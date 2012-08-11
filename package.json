@@ -1,0 +1,35 @@
+{
+  "name": "cw-conv",
+  "description": "Convert old CardWirth data",
+  "version": "0.1.0",
+  "homepage": "https://github.com/shiwano/cw-conv",
+  "author": {
+    "name": "Shogo Iwano",
+    "email": "shiwano@gmail.com",
+    "url": "http://twitter.com/shiwano"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/shiwano/cw-conv.git"
+  },
+  "bugs": {
+    "url": "https://github.com/shiwano/cw-conv/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/shiwano/cw-conv/blob/master/LICENSE-MIT"
+    }
+  ],
+  "main": "lib/cw-conv",
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.12"
+  },
+  "keywords": []
+}
