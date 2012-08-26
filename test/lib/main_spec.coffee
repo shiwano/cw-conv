@@ -4,5 +4,4 @@ require 'should'
 main = spec.require "main.coffee"
 
 describe 'main', ->
-  it 'awesome', ->
-    main.awesome().should.equal 'awesome'
+  it 'main', ->
