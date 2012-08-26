@@ -1,2 +1,2 @@
 module.exports.require = (path) =>
-  require "#{__dirname}/../#{path}"
+  require "#{__dirname}/../src/#{path}"
