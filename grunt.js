@@ -15,8 +15,7 @@ module.exports = function(grunt) {
         srcDir: 'src',
         destDir: 'lib',
         options: {
-          // bare: true
-          bare: false
+          bare: true
         }
       }
     },
