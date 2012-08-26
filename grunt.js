@@ -6,7 +6,8 @@ module.exports = function(grunt) {
       lib: {
         srcDir: 'src',
         testDir: 'test/lib',
-        suffix: '_spec'
+        suffix: '_spec',
+        noCaches: ['test/spec_helper.coffee']
       }
     },
     coffee: {
