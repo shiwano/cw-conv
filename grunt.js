@@ -19,6 +19,13 @@ module.exports = function(grunt) {
         }
       }
     },
+    build: {
+      requirejs: {
+        baseUrl: 'lib',
+        name: 'main',
+        out: 'build/cw-conv.js'
+      }
+    },
     watch: {
       files: ['grunt.js', 'src/**/*.coffee', 'test/lib/**/*.coffee'],
       tasks: 'default'
