@@ -36,6 +36,7 @@
     "coffee-script": "latest",
     "requirejs": "latest",
     "amdefine": "latest",
+    "buffertools": "latest",
     "underscore": "latest"
   },
   "keywords": []
