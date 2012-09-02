@@ -61,7 +61,7 @@ describe 'file', ->
         buffer = fs.readFileSync 'test/fixture/scenario/ryune/Summary.wsm'
         reader = new file.Reader(buffer)
         imageBuf = reader.readImage()
-        fixtureImageBuf = fs.readFileSync('test/fixture/ryune_summery.bmp')
+        fixtureImageBuf = fs.readFileSync('test/fixture/ryune_summary.bmp')
         imageBuf.equals(fixtureImageBuf).should.be.true
 
       it 'should return the null when image data length is 0', ->
@@ -69,3 +69,11 @@ describe 'file', ->
         [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
         reader = new file.Reader(buffer)
         reader.readImage().should.be.null
+
+    describe 'readImageAsDataURI', ->
+      it 'should return the dataUri string of the image data', ->
+        buffer = fs.readFileSync 'test/fixture/scenario/ryune/Summary.wsm'
+        reader = new file.Reader(buffer)
+        dataURI = reader.readImageAsDataURI()
+        validDataURI = fs.readFileSync 'test/fixture/ryune_summary.bmp.datauri', 'ascii'
+        dataURI.should.equal validDataURI

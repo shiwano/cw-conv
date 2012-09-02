@@ -1,6 +1,7 @@
 define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
+  utils = require './utils'
   encoding = require '../vendor/encoding'
 
   class Reader
@@ -33,6 +34,11 @@ define (require, exports, module) ->
 
     readBoolean: ->
       if @readInt8() then true else false
+
+    readImageAsDataURI: ->
+      buffer = @readImage()
+      base64 = utils.toBase64 buffer
+      "data:image/x-bmp;base64,#{base64}"
 
     readImage: ->
       length = @readInt32()
