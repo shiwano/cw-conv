@@ -1,5 +1,5 @@
 spec = require '../spec_helper'
-require 'should'
+should = require 'should'
 require 'buffertools'
 fs = require 'fs'
 
@@ -68,7 +68,7 @@ describe 'reader', ->
         buffer = new Buffer(4)
         [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
         reader = new Reader(buffer)
-        reader.readImage().should.be.null
+        should.not.exist reader.readImage()
 
     describe 'readImageAsDataURI', ->
       it 'should return the dataUri string of the image data', ->

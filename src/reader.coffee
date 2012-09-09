@@ -37,12 +37,13 @@ define (require, exports, module) ->
 
     readImageAsDataURI: ->
       buffer = @readImage()
+      return '' unless buffer
       base64 = utils.toBase64 buffer
       "data:image/x-bmp;base64,#{base64}"
 
     readImage: ->
       length = @readInt32()
-      return '' unless length > 0
+      return null unless length > 0
       buffer = @buffer.slice(@position, @position + length)
       @seek length
       buffer
