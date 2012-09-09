@@ -10,11 +10,11 @@ define (require, exports, module) ->
       @data.title        = @reader.readString()
       @data.description  = @reader.readString()
       @data.author       = @reader.readString()
-      @data.prerequisite = new Prerequisite(@reader).parse()
+      @data.prerequisite = new Prerequisite(@).parse()
       sceneId            = @reader.readInt32()
       @version           = ~~(sceneId / 10000)
       @data.startSceneId = sceneId % 10000
-      @data.defnitions   = new Defnitions(@reader).parse()
+      @data.defnitions   = new Defnitions(@).parse()
 
       @reader.seek 4 # skip a unknown data
 
@@ -34,9 +34,9 @@ define (require, exports, module) ->
   class Defnitions extends Base
     parse: ->
       stepsListLength = @reader.readInt32()
-      @data.stepsList = ((new Steps @reader).parse() for i in [0...stepsListLength])
+      @data.stepsList = (new Steps(@).parse() for i in [0...stepsListLength])
       flagsLength     = @reader.readInt32()
-      @data.flags     = ((new Flag @reader).parse() for i in [0...flagsLength])
+      @data.flags     = (new Flag(@).parse() for i in [0...flagsLength])
       @data
 
   class Flag extends Base

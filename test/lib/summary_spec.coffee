@@ -11,7 +11,7 @@ describe 'summary', ->
       it 'should return the Summary data', ->
         buffer = fs.readFileSync 'test/fixture/Summary.wsm'
         reader = new Reader buffer
-        s = new Summary(reader)
+        s = new Summary(null, reader)
         data = s.parse()
         s.type.should.equal -1
         s.version.should.equal 4

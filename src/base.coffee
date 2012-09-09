@@ -2,10 +2,10 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
   class Base
-    constructor: (reader, isInnData = false) ->
-      @isInnData = isInnData
-      @reader = reader
-      @data = {}
+    constructor: (parent, reader = null, isInnData = false) ->
+      @reader    = parent?.reader or reader
+      @isInnData = parent?.isInnData or isInnData
+      @data      = {}
 
     toJSON: ->
       JSON.stringify @data

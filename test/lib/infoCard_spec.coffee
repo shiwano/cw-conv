@@ -11,7 +11,7 @@ describe 'infoCard', ->
       it 'should return the InfoCard data', ->
         buffer = fs.readFileSync 'test/fixture/Info1.wid'
         reader = new Reader buffer
-        s = new InfoCard(reader)
+        s = new InfoCard null, reader
         data = s.parse()
         s.type.should.equal 4
         data.name.should.equal '情報カード'
