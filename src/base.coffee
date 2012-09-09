@@ -330,10 +330,6 @@ define (require, exports, module) ->
         else throw Error "Unknown inn summary setting type: #{i}"
 
     convertInnBackgroundSettingType: (i) ->
-      """引数の値から、背景の切り替え方式の種類を返す。
-      0:アニメーションなし, 1:短冊式,
-      2:色変換式, 3:ドット置換式
-      """
       switch i
         when 0 then 'noAnimation' # アニメーションなし
         when 1 then 'reedShape'   # 短冊式
