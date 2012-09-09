@@ -1,9 +1,11 @@
 define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
+  {Reader} = require './reader'
+
   class Base
-    constructor: (parent, reader = null, isInnData = false) ->
-      @reader    = parent?.reader or reader
+    constructor: (parent, buffer = null, isInnData = false) ->
+      @reader    = parent?.reader or new Reader(buffer)
       @isInnData = parent?.isInnData or isInnData
       @data      = {}
 
@@ -35,21 +37,21 @@ define (require, exports, module) ->
         when 16 then 'flag'                   # フラグ変更
         when 17 then 'branchBySteps'          # ステップ多岐分岐
         when 18 then 'steps'                  # ステップ変更
-        when 19 then 'branchByCast'           # キャスト存在分岐
+        when 19 then 'branchByAlly'           # キャスト存在分岐
         when 20 then 'branchByItem'           # アイテム所持分岐
         when 21 then 'branchBySkill'          # スキル所持分岐
         when 22 then 'branchByInfomation'     # 情報所持分岐
         when 23 then 'branchByBeast'          # 召喚獣存在分岐
         when 24 then 'branchByMoney'          # 所持金分岐
         when 25 then 'branchByAchievement'    # 称号分岐
-        when 26 then 'cast'                   # キャスト加入
+        when 26 then 'ally'                   # キャスト加入
         when 27 then 'item'                   # アイテム入手
         when 28 then 'skill'                  # スキル入手
         when 29 then 'information'            # 情報入手
         when 30 then 'beast'                  # 召喚獣獲得
         when 31 then 'money'                  # 所持金増加
         when 32 then 'achievement'            # 称号付与
-        when 33 then 'castLoss'               # キャスト離脱
+        when 33 then 'allyLoss'               # キャスト離脱
         when 34 then 'itemLoss'               # アイテム喪失
         when 35 then 'skillLoss'              # スキル喪失
         when 36 then 'informationLoss'        # 情報喪失
@@ -88,7 +90,11 @@ define (require, exports, module) ->
 # 適用メンバ・適用範囲
 #-------------------------------------------------------------------------------
 
-    convertTargetType: (i) ->
+    convertTargetType: (i, isEffectContent = false) ->
+      # 効果コンテントの適用メンバには"選択中以外のメンバ"は存在しない。
+      # 代わりに"パーティ全体"となる。
+      i = 6 if isEffectContent and i is 2
+
       switch i
         when 0 then 'selected'            # 現在選択中のメンバ
         when 1 then 'random'              # ランダムメンバ
@@ -119,7 +125,7 @@ define (require, exports, module) ->
         when 1 then 'custom' # 指定配置
         else throw Error "Unknown card arrangement type: #{i}"
 
-    convertCharacterStatusType: (i) ->
+    convertCharacterStateType: (i) ->
       switch i
         when 0  then 'active'       # 行動可能
         when 1  then 'inactive'     # 行動不可
@@ -139,7 +145,7 @@ define (require, exports, module) ->
 # 効果モーション関連
 #-------------------------------------------------------------------------------
 
-    convertEffectElement: (i) ->
+    convertEffectElementType: (i) ->
       switch i
         when 0 then 'non'   # 全属性
         when 1 then 'body'  # 肉体属性
@@ -150,7 +156,7 @@ define (require, exports, module) ->
         when 6 then 'cold'  # 冷属性
         else throw Error "Unknown effect element type: #{i}"
 
-    convertEffectType: (self, categoryType, effectType) ->
+    convertEffectType: (categoryType, effectType) ->
       switch categoryType
         when  0
           switch effectType
@@ -228,10 +234,10 @@ define (require, exports, module) ->
         else throw Error "Unknown effect damage type: #{i}"
 
 #-------------------------------------------------------------------------------
-# スキル・アイテム・召喚獣関連
+# スキル・アイテム・召喚獣・効果コンテント関連
 #-------------------------------------------------------------------------------
 
-    convertCardEffectElementType: (i) ->
+    convertEffectPhenomenonType: (i) ->
       switch i
         when 0 then 'physical'        # 物理属性
         when 1 then 'magical'         # 魔法属性
@@ -240,14 +246,14 @@ define (require, exports, module) ->
         when 4 then 'non'             # 無属性
         else throw Error "Unknown card effect element type: #{i}"
 
-    convertCardEffectResponseType: (i) ->
+    convertEffectReactionType: (i) ->
       switch i
         when 0 then 'evasion'        # 物理属性
         when 1 then 'resistance'     # 抵抗属性
         when 2 then 'ineluctability' # 必中属性
         else throw Error "Unknown card response type: #{i}"
 
-    convertCardEffectAnimationType: (i) ->
+    convertEffectAnimationType: (i) ->
       switch i
         when 0 then 'none'                  # 無し
         when 1 then 'turnover'              # 反転
@@ -255,7 +261,7 @@ define (require, exports, module) ->
         when 3 then 'longitudinalVibration' # 縦振動
         else throw Error "Unknown card effect animation type: #{i}"
 
-    convertCardPhysicalAptitudeType: (i) ->
+    convertPhysicalAptitudeType: (i) ->
       switch i
         when 0 then 'dex' # 器用
         when 1 then 'agl' # 素早さ
@@ -265,7 +271,7 @@ define (require, exports, module) ->
         when 5 then 'min' # 精神
         else throw Error "Unknown card physical aptitude type: #{i}"
 
-    convertCardMentalAptitudeType: (i) ->
+    convertMentalAptitudeType: (i) ->
       switch i
         when  1 then 'aggressive'    # 好戦
         when -1 then 'unaggressive'  # 平和

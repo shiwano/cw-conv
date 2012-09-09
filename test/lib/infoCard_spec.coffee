@@ -3,15 +3,13 @@ require 'should'
 fs = require 'fs'
 
 {InfoCard} = spec.require "infoCard.coffee"
-{Reader} = spec.require "reader.coffee"
 
 describe 'infoCard', ->
   describe 'InfoCard', ->
     describe 'parse', ->
       it 'should return the InfoCard data', ->
         buffer = fs.readFileSync 'test/fixture/Info1.wid'
-        reader = new Reader buffer
-        s = new InfoCard null, reader
+        s = new InfoCard null, buffer
         data = s.parse()
         s.type.should.equal 4
         data.name.should.equal '情報カード'

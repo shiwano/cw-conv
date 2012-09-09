@@ -3,15 +3,13 @@ require 'should'
 fs = require 'fs'
 
 {Summary} = spec.require "summary.coffee"
-{Reader} = spec.require "reader.coffee"
 
 describe 'summary', ->
   describe 'Summary', ->
     describe 'parse', ->
       it 'should return the Summary data', ->
         buffer = fs.readFileSync 'test/fixture/Summary.wsm'
-        reader = new Reader buffer
-        s = new Summary(null, reader)
+        s = new Summary null, buffer
         data = s.parse()
         s.type.should.equal -1
         s.version.should.equal 4
