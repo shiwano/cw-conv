@@ -39,7 +39,7 @@ define (require, exports, module) ->
       buffer = @readImage()
       return '' unless buffer
       base64 = utils.toBase64 buffer
-      "data:image/x-bmp;base64,#{base64}"
+      "data:application/octet-stream;base64,#{base64}"
 
     readImage: ->
       length = @readInt32()
