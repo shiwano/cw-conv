@@ -5,7 +5,7 @@ fs = require 'fs'
 utils = spec.require "utils.coffee"
 
 describe 'utils', ->
-  describe '#toBase64', ->
+  describe 'toBase64', ->
     it 'should return the base64 string', ->
       buffer = fs.readFileSync 'test/fixture/ryune_summary.bmp'
       base64 = utils.toBase64 buffer
