@@ -9,7 +9,7 @@ describe 'summary', ->
   describe 'Summary', ->
     describe 'parse', ->
       it 'should return the Summary data', ->
-        buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Summary.wsm'
+        buffer = fs.readFileSync 'test/fixture/Summary.wsm'
         reader = new Reader buffer
         s = new Summary(reader)
         data = s.parse()
@@ -18,13 +18,13 @@ describe 'summary', ->
         data.title.should.equal 'ゴブリンの洞窟'
         data.description.should.match /とを決定した…$/
         data.author.should.equal '齋藤 洋'
-        data.prerequisite.coupons.should.be.empty
-        data.prerequisite.couponsNumber.should.equal 0
+        data.prerequisite.coupons.should.include '総理大臣'
+        data.prerequisite.couponsNumber.should.equal 3
         data.startSceneId.should.equal 1
         steps = data.defnitions.stepsList[0]
         steps.name.should.equal '見張兵の気持ち'
         steps.default.should.equal 0
-        steps.valueNames[0].should.equal '平和だな'
+        steps.valueNames.should.include '平和だな'
         flag = data.defnitions.flags[0]
         flag.name.should.equal '敵に見つかった！'
         flag.default.should.be.false

@@ -28,10 +28,10 @@ describe 'reader', ->
 
     describe 'readString', ->
       it 'should return the string which is decoded from Shift-JIS', ->
-        buffer = fs.readFileSync 'test/fixture/scenario/ryune/Area1.wid'
+        buffer = fs.readFileSync 'test/fixture/Summary.wsm'
         reader = new Reader(buffer)
-        reader.seek 5 # skip
-        reader.readString().should.equal '交易都市リューン'
+        reader.readImageAsDataURI()
+        reader.readString().should.equal 'ゴブリンの洞窟'
 
       it 'should return the empty string when the string length is 0', ->
         buffer = new Buffer(4)
@@ -58,10 +58,10 @@ describe 'reader', ->
 
     describe 'readImage', ->
       it 'should return the image data', ->
-        buffer = fs.readFileSync 'test/fixture/scenario/ryune/Summary.wsm'
+        buffer = fs.readFileSync 'test/fixture/Summary.wsm'
         reader = new Reader(buffer)
         imageBuf = reader.readImage()
-        fixtureImageBuf = fs.readFileSync('test/fixture/ryune_summary.bmp')
+        fixtureImageBuf = fs.readFileSync('test/fixture/Summary.bmp')
         imageBuf.equals(fixtureImageBuf).should.be.true
 
       it 'should return the null when image data length is 0', ->
@@ -72,8 +72,8 @@ describe 'reader', ->
 
     describe 'readImageAsDataURI', ->
       it 'should return the dataUri string of the image data', ->
-        buffer = fs.readFileSync 'test/fixture/scenario/ryune/Summary.wsm'
+        buffer = fs.readFileSync 'test/fixture/Summary.wsm'
         reader = new Reader(buffer)
         dataURI = reader.readImageAsDataURI()
-        validDataURI = fs.readFileSync 'test/fixture/ryune_summary.bmp.datauri', 'ascii'
+        validDataURI = fs.readFileSync 'test/fixture/Summary.bmp.datauri', 'ascii'
         dataURI.should.equal validDataURI
