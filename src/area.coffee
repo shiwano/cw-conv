@@ -3,7 +3,7 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 define (require, exports, module) ->
   {Base} = require './base'
   {Event} = require './event'
-  {BackgroundImage} = require './background'
+  {BackgroundImage} = require './background_image'
 
   class Area extends Base
     parse: ->

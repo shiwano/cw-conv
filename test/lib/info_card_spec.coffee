@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 require 'should'
 fs = require 'fs'
 
-{InfoCard} = spec.require "infoCard.coffee"
+{InfoCard} = spec.require "info_card.coffee"
 
 describe 'InfoCard', ->
   describe '#parse', ->

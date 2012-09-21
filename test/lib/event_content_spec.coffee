@@ -3,7 +3,7 @@ should = require 'should'
 fs = require 'fs'
 require 'buffertools'
 
-{createEventContent} = spec.require "eventContent.coffee"
+{createEventContent} = spec.require "event_content.coffee"
 {Base} = spec.require 'base.coffee'
 
 describe 'createEventContent', ->

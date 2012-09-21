@@ -2,7 +2,7 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
   {Base} = require './base'
-  {createEventContent} = require './eventContent'
+  {createEventContent} = require './event_content'
 
   class Event extends Base
     parse: ->

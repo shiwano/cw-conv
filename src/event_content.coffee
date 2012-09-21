@@ -3,7 +3,7 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 define (require, exports, module) ->
   {Effect} = require './effect'
   {Base} = require './base'
-  {BackgroundImage} = require './background'
+  {BackgroundImage} = require './background_image'
   EventContent = {}
 
   class EventContentBase extends Base
