@@ -107,12 +107,12 @@ define (require, exports, module) ->
 
     convertTargetScopeType: (i) ->
       switch i
-        when 0 then 'selected'         # 現在選択中のメンバ
-        when 1 then 'random'           # ランダムメンバ
-        when 2 then 'party'            # パーティ全員
-        when 3 then 'backpack'         # 荷物袋
-        when 4 then 'partyAndBackpack' # 全体・荷物袋含む
-        when 5 then 'field'            # フィールド全体
+        when 0 then 'selected'          # 現在選択中のメンバ
+        when 1 then 'random'            # ランダムメンバ
+        when 2 then 'party'             # パーティ全員
+        when 3 then 'inventory'         # 荷物袋
+        when 4 then 'partyAndInventory' # 全体・荷物袋含む
+        when 5 then 'all'               # フィールド全体
         else throw Error "Unknown target scope type: #{i}"
 
 #-------------------------------------------------------------------------------
