@@ -8,9 +8,8 @@ describe 'InfoCard', ->
   describe '#parse', ->
     it 'should return the InfoCard data', ->
       buffer = fs.readFileSync 'test/fixture/Info1.wid'
-      s = new InfoCard null, buffer
-      data = s.parse()
-      s.type.should.equal 4
+      data = (new InfoCard null, buffer).parse()
+      data.type.should.equal 'infoCard'
       data.name.should.equal '情報カード'
       data.id.should.equal 1
       data.description.should.match /ゆっくりしていってね！$/

@@ -10,7 +10,7 @@ describe 'Area', ->
       buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area1.wid'
       a = new Area null, buffer
       data = a.parse()
-      a.type.should.equal 0
+      data.type.should.equal 'scene'
       data.name.should.equal '冒険者の宿'
       data.cardArrangement.should.equal 'auto'
       data.events.should.have.length 1

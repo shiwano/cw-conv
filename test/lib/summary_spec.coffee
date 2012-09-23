@@ -10,8 +10,8 @@ describe 'Summary', ->
       buffer = fs.readFileSync 'test/fixture/Summary.wsm'
       s = new Summary null, buffer
       data = s.parse()
-      s.type.should.equal -1
       s.version.should.equal 4
+      data.type.should.equal 'summary'
       data.title.should.equal 'ゴブリンの洞窟'
       data.description.should.match /とを決定した…$/
       data.author.should.equal '齋藤 洋'

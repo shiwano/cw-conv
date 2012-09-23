@@ -13,6 +13,23 @@ define (require, exports, module) ->
       JSON.stringify @data
 
 #-------------------------------------------------------------------------------
+# データ・タイプ
+#-------------------------------------------------------------------------------
+
+    convertScenarioDataType: (i) ->
+      switch i
+        when 0 then 'scene'
+        when 1 then 'battle'
+        when 2 then 'characterCard'
+        when 3 then 'itemCard'
+        when 4 then 'infoCard' # wid に一意に定義されていないので暫定
+        when 5 then 'skillCard'
+        when 6 then 'beastCard'
+        when 7 then 'package'  # wid に一意に定義されていないので暫定
+        when 8 then 'summary'  # wsm に type が定義されていないので暫定
+        else throw Error "Unknown scenario data type: #{i}"
+
+#-------------------------------------------------------------------------------
 # イベントコンテント
 #-------------------------------------------------------------------------------
 

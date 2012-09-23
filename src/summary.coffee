@@ -5,7 +5,7 @@ define (require, exports, module) ->
 
   class Summary extends Base
     parse: ->
-      @type              = -1
+      @data.type        = @convertScenarioDataType 8
       @data.image        = @reader.readImageAsDataURI()
       @data.title        = @reader.readString()
       @data.description  = @reader.readString()

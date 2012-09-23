@@ -15,5 +15,12 @@ define (require, exports, module) ->
       @data.triggers.keycodes = if keycodesLength then keycodesLength.split('\n') else []
       @data
 
-  exports.Event = Event
+  class SimpleEvent extends Base
+    parse: ->
+      childrenLength          = @reader.readInt32()
+      @data.children          = (createEventContent(@).parse() for i in [0...childrenLength])
+      @data
+
+  exports.SimpleEvent = SimpleEvent
+  exports.Event       = Event
   exports
