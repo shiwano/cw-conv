@@ -10,7 +10,6 @@ describe 'SkillCard', ->
       buffer = fs.readFileSync 'test/fixture/scenario/ryune/Skill100.wid'
       s = new SkillCard null, buffer
       data = s.parse()
-      p data
       data.type.should.equal 'skillCard'
       data.name.should.equal '居合斬り'
       data.id.should.equal 100
