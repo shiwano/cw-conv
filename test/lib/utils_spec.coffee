@@ -1,5 +1,5 @@
 spec = require '../spec_helper'
-require 'should'
+{expect} = require 'chai'
 fs = require 'fs'
 
 utils = spec.require "utils.coffee"
@@ -9,4 +9,4 @@ describe 'toBase64', ->
     buffer = fs.readFileSync 'test/fixture/Summary.bmp'
     base64 = utils.toBase64 buffer
     dataURI = fs.readFileSync 'test/fixture/Summary.bmp.datauri', 'ascii'
-    dataURI.indexOf(base64).should.be.above -1
+    expect(dataURI.indexOf(base64)).to.be.above -1

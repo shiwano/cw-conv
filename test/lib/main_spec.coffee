@@ -1,7 +1,7 @@
 spec = require '../spec_helper'
-require 'should'
+{expect} = require 'chai'
 
 main = spec.require "main.coffee"
 
 describe 'main', ->
-  it 'main', ->
+  it 'main'

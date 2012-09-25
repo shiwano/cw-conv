@@ -1,5 +1,5 @@
 spec = require '../spec_helper'
-should = require 'should'
+{expect} = require 'chai'
 fs = require 'fs'
 require 'buffertools'
 
@@ -10,4 +10,5 @@ describe 'createEventContent', ->
   it 'should return the appropriate EventContent instance', ->
     buffer = new Buffer(100).clear()
     eventContent = createEventContent new Base(null, buffer)
-    eventContent.parse().type.should.equal 'start'
+    data = eventContent.parse()
+    expect(data).to.have.property('type').and.equal 'start'

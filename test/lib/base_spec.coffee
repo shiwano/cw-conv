@@ -1,14 +1,14 @@
 spec = require '../spec_helper'
-require 'should'
+{expect} = require 'chai'
 
 {Base} = spec.require "base.coffee"
 
 describe 'Base', ->
   describe '#toJSON', ->
     it 'should return the JSON of the converted data', ->
-      b = new Base(null, new Buffer(10))
-      b.data.foo = 'foobar'
-      b.data.bar = 111
-      data = JSON.parse b.toJSON()
-      data.foo.should.equal 'foobar'
-      data.bar.should.equal 111
+      base = new Base(null, new Buffer(10))
+      base.data.foo = 'foobar'
+      base.data.bar = 111
+      data = JSON.parse base.toJSON()
+      expect(data).to.have.property('foo').and.equal 'foobar'
+      expect(data).to.have.property('bar').and.equal 111

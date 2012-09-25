@@ -15,20 +15,17 @@ define (require, exports, module) ->
       @version           = ~~(sceneId / 10000)
       @data.startSceneId = sceneId % 10000
       @data.defnitions   = new Defnitions(@).parse()
-
       @reader.seek 4 # skip a unknown data
-
       @data.recommendedLevel =
         min: @reader.readInt32()
         max: @reader.readInt32()
-
       @data
 
   class Prerequisite extends Base
     parse: ->
-      coupons             = @reader.readString()
-      @data.coupons       = if coupons then coupons.split('\n') else []
-      @data.couponsNumber = @reader.readInt32()
+      achievements             = @reader.readString()
+      @data.achievements       = if achievements then achievements.split('\n') else []
+      @data.achievementsNumber = @reader.readInt32()
       @data
 
   class Defnitions extends Base

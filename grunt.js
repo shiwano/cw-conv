@@ -34,7 +34,6 @@ module.exports = function(grunt) {
       options: {
         'growl': true,
         'compilers': 'coffee:coffee-script',
-        'require': 'should',
         'reporter': 'spec',
         'timeout': 8000,
         'ignore-leaks': true

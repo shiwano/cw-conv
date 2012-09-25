@@ -26,7 +26,7 @@ define (require, exports, module) ->
       @data.effects         = (new Effect(@).parse() for i in [0...effectsLength])
       @data.evasionBonus    = @reader.readInt32()
       @data.resistanceBonus = @reader.readInt32()
-      @data.defenceBonus    = @reader.readInt32()
+      @data.defenseBonus    = @reader.readInt32()
       @data.soundBefore     = @reader.readString()
       @data.soundAfter      = @reader.readString()
       @data.keycodes        = (@reader.readString() for i in [0..4])

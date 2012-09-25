@@ -1,5 +1,5 @@
 spec = require '../spec_helper'
-require 'should'
+{expect} = require 'chai'
 fs = require 'fs'
 
 {InfoCard} = spec.require "info_card.coffee"
@@ -9,7 +9,7 @@ describe 'InfoCard', ->
     it 'should return the InfoCard data', ->
       buffer = fs.readFileSync 'test/fixture/Info1.wid'
       data = (new InfoCard null, buffer).parse()
-      data.type.should.equal 'infoCard'
-      data.name.should.equal '情報カード'
-      data.id.should.equal 1
-      data.description.should.match /ゆっくりしていってね！$/
+      expect(data).to.have.property('type').and.equal 'infoCard'
+      expect(data).to.have.property('name').and.equal '情報カード'
+      expect(data).to.have.property('id').and.equal 1
+      expect(data).to.have.property('description').and.match /ゆっくりしていってね！$/

@@ -1,5 +1,5 @@
 spec = require '../spec_helper'
-should = require 'should'
+{expect} = require 'chai'
 fs = require 'fs'
 
 {Area} = spec.require "area.coffee"
@@ -9,24 +9,24 @@ describe 'Area', ->
     it 'should return the area data', ->
       buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area1.wid'
       data = (new Area null, buffer).parse()
-      data.type.should.equal 'scene'
-      data.name.should.equal '冒険者の宿'
-      data.cardArrangement.should.equal 'auto'
-      data.events.should.have.length 1
-      data.menuCards.should.have.length 0
-      data.backgrounds.should.have.length 2
+      expect(data).to.have.property('type').and.equal 'scene'
+      expect(data).to.have.property('name').and.equal '冒険者の宿'
+      expect(data).to.have.property('cardArrangement').and.equal 'auto'
+      expect(data).to.have.property('events').and.have.length 1
+      expect(data).to.have.property('menuCards').and.have.length 0
+      expect(data).to.have.property('backgrounds').and.have.length 2
 
 describe 'MenuCard', ->
   describe '#parse', ->
     it 'should return the menuCard data', ->
       buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area3.wid'
-      data = (new Area null, buffer).parse()
-      m = data.menuCards[0]
-      m.image.should.equal 'MENU＿移動↓.bmp'
-      m.name.should.equal '南へ'
-      m.description.should.equal ''
-      m.flag.should.equal ''
-      m.events.should.have.length 1
-      m.scale.should.equal 100
-      m.left.should.equal 173
-      m.top.should.equal 158
+      areaData = (new Area null, buffer).parse()
+      data = areaData.menuCards[0]
+      expect(data).to.have.property('image').and.equal 'MENU＿移動↓.bmp'
+      expect(data).to.have.property('name').and.equal '南へ'
+      expect(data).to.have.property('description').and.equal ''
+      expect(data).to.have.property('flag').and.equal ''
+      expect(data).to.have.property('events').and.have.length 1
+      expect(data).to.have.property('scale').and.equal 100
+      expect(data).to.have.property('left').and.equal 173
+      expect(data).to.have.property('top').and.equal 158
