@@ -4,19 +4,14 @@ module.exports = function(grunt) {
     pkg: '<json:package.json>',
     test: {
       lib: {
-        srcDir: 'src',
-        testDir: 'test/lib',
-        suffix: '_spec',
-        noCaches: ['test/spec_helper.coffee']
+        files: ['test/lib/**/*.coffee'],
+        nonCached: ['test/spec_helper.coffee']
       }
     },
     coffee: {
       lib: {
-        srcDir: 'src',
-        destDir: 'lib',
-        options: {
-          bare: true
-        }
+        src: 'src',
+        dest: 'lib'
       }
     },
     build: {
@@ -26,12 +21,36 @@ module.exports = function(grunt) {
         out: 'build/cw-conv.js'
       }
     },
+    yagura: {
+      coffee: {
+        match: '^src/.+\\.coffee$',
+        changed: function (filepath, done) {
+          destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
+          grunt.helper('coffee', filepath, destpath);
+          done();
+        },
+        deleted: function (filepath, done) {
+          destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
+          grunt.helper('coffee-delete', destpath);
+          done();
+        }
+      },
+      test: {
+        match: '^test/lib/.+_spec\\.coffee$',
+        changed: function (filepath, done) {
+          grunt.helper('test', [filepath], done);
+        }
+      }
+    },
     watch: {
       files: ['grunt.js', 'src/**/*.coffee', 'test/lib/**/*.coffee'],
-      tasks: 'default'
+      tasks: 'yagura'
     },
-    mocha: {
-      options: {
+    options: {
+      coffee: {
+        bare: true
+      },
+      mocha: {
         'growl': true,
         'compilers': 'coffee:coffee-script',
         'reporter': 'spec',

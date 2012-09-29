@@ -3,46 +3,24 @@ module.exports = function (grunt) {
   var fs = require('fs');
   var coffee = require('coffee-script');
 
-  // ==========================================================================
-  // TASKS
-  // ==========================================================================
-
   grunt.registerMultiTask('coffee', 'Compile CoffeeScript files', function () {
-    var srcDir = this.data.srcDir,
-        destDir = this.data.destDir,
-        options = grunt.utils._.clone(this.data.options);
+    var src = this.data.src,
+        dest = this.data.dest;
 
-    var deleteFile = function (filepath) {
-      if (fs.existsSync(filepath)) {
-        fs.unlinkSync(filepath);
-        grunt.log.writeln('Deleted "' + filepath + '"');
-      }
-    };
-
-    var filepaths = grunt.file.expandFiles(path.join(srcDir, '/**/*.coffee'));
+    var filepaths = grunt.file.expandFiles(path.join(src, '/**/*.coffee'));
     grunt.file.clearRequireCache(filepaths);
 
-    if (grunt.file.watchFiles) {
-      grunt.file.watchFiles.deleted.forEach(function (filepath) {
-        if (filepath.indexOf(srcDir) === 0) {
-          filepath = filepath.replace(srcDir, destDir).replace(/\.coffee$/, '.js');
-          deleteFile(filepath);
-        }
-      });
-      filepaths = grunt.utils._.intersection(filepaths, grunt.file.watchFiles.changed);
-    } else {
-      grunt.file.expandFiles(path.join(destDir, '/**/*.js')).forEach(function (filepath) {
-        srcpath = filepath.replace(destDir, srcDir).replace(/\.js/, '.coffee');
+    grunt.file.expandFiles(path.join(dest, '/**/*.js')).forEach(function (filepath) {
+      srcpath = filepath.replace(dest, src).replace(/\.js$/, '.coffee');
 
-        if (!fs.existsSync(srcpath)) {
-          deleteFile(filepath);
-        }
-      });
-    }
+      if (!fs.existsSync(srcpath)) {
+        grunt.helper('coffee-delete', filepath);
+      }
+    });
 
     filepaths.forEach(function (filepath) {
-      destpath = filepath.replace(srcDir, destDir).replace(/\.coffee$/, '.js');
-      grunt.helper('coffee', filepath, destpath, options);
+      destpath = filepath.replace(src, dest).replace(/\.coffee$/, '.js');
+      grunt.helper('coffee', filepath, destpath);
     });
 
     if (grunt.task.current.errorCount) {
@@ -52,14 +30,17 @@ module.exports = function (grunt) {
     grunt.log.ok('Compiling complete');
   });
 
-  // ==========================================================================
-  // HELPERS
-  // ==========================================================================
+  grunt.registerHelper('coffee-delete', function (filepath) {
+    if (fs.existsSync(filepath)) {
+      fs.unlinkSync(filepath);
+      grunt.log.writeln('Deleted "' + filepath + '"');
+    }
+  });
 
-  grunt.registerHelper('coffee', function (src, dest, options) {
-    options = options || {};
+  grunt.registerHelper('coffee', function (src, dest) {
+    options = grunt.config.get('options.coffee') || {};
 
-    if ( options.bare !== false ) {
+    if (options.bare !== false) {
       options.bare = true;
     }
 
