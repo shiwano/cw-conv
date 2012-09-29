@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     test: {
       lib: {
         files: ['test/lib/**/*.coffee'],
-        nonCached: ['test/spec_helper.coffee']
+        noCachedFiles: ['test/spec_helper.coffee']
       }
     },
     coffee: {
@@ -23,11 +23,13 @@ module.exports = function(grunt) {
     },
     yagura: {
       coffee: {
-        match: '^src/.+\\.coffee$',
+        files: ['src/**/*.coffee'],
+        noCachedFiles: ['test/spec_helper.coffee'],
         changed: function (filepath, done) {
           destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
           grunt.helper('coffee', filepath, destpath);
-          done();
+          specpath = filepath.replace('src', 'test/lib').replace(/\.coffee$/, '_spec.coffee');
+          grunt.helper('test', [specpath], done);
         },
         deleted: function (filepath, done) {
           destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
@@ -36,7 +38,8 @@ module.exports = function(grunt) {
         }
       },
       test: {
-        match: '^test/lib/.+_spec\\.coffee$',
+        files: ['test/lib/**/*.coffee'],
+        noCachedFiles: ['test/spec_helper.coffee'],
         changed: function (filepath, done) {
           grunt.helper('test', [filepath], done);
         }

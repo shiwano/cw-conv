@@ -9,9 +9,14 @@ module.exports = function (grunt) {
 
     var changedCallback = this.data.changed,
         deletedCallback = this.data.deleted,
-        pattern = new RegExp(this.data.match),
+        files = this.data.files,
         taskResult = true;
         taskDone = this.async();
+
+    if (this.data.noCachedFiles) {
+      var noCachedFiles = grunt.file.expandFiles(this.data.noCachedFiles);
+      grunt.file.clearRequireCache(noCachedFiles);
+    }
 
     var wrapDone = function (done) {
       return function (result) {
@@ -23,14 +28,14 @@ module.exports = function (grunt) {
     };
 
     async.forEach(grunt.file.watchFiles.changed, function (filepath, done) {
-      if (changedCallback && pattern.test(filepath)) {
+      if (changedCallback && grunt.file.isMatch(files, filepath)) {
         changedCallback(filepath, wrapDone(done));
         return;
       }
       done();
     }, function (changedError) {
       async.forEach(grunt.file.watchFiles.deleted, function (filepath, done) {
-        if (deletedCallback && pattern.test(filepath)) {
+        if (deletedCallback && grunt.file.isMatch(files, filepath)) {
           deletedCallback(filepath, wrapDone(done));
           return;
         }

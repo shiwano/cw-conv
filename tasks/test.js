@@ -4,10 +4,13 @@ module.exports = function(grunt) {
       Mocha = require('mocha');
 
   grunt.registerMultiTask('test', 'Run specs with mocha.', function() {
+    if (this.data.noCachedFiles) {
+      var noCachedFiles = grunt.file.expandFiles(this.data.noCachedFiles);
+      grunt.file.clearRequireCache(noCachedFiles);
+    }
+
     var filepaths = grunt.file.expandFiles(this.data.files);
-    var nonCachedFiles = grunt.file.expandFiles(this.data.nonCached);
     grunt.file.clearRequireCache(filepaths);
-    grunt.file.clearRequireCache(nonCachedFiles);
     var done = this.async();
     grunt.helper('test', filepaths, done);
   });
