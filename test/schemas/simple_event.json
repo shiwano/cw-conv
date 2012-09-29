@@ -1,0 +1,15 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://schema.cardwirth.org/simple_event#",
+  "required": true,
+
+  "properties": {
+    "children": {
+      "type": "array",
+      "required": true,
+      "items": {
+      }
+    }
+  }
+}

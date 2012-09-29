@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://schema.cardwirth.org/flag#",
+  "required": true,
+
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+
+    "default": {
+      "type": "boolean",
+      "required": true
+    },
+
+    "valueNameOnTrue": {
+      "type": "string",
+      "required": true
+    },
+
+    "valueNameOnFalse": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

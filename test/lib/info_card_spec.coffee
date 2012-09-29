@@ -3,6 +3,7 @@ spec = require '../spec_helper'
 fs = require 'fs'
 
 {InfoCard} = spec.require "info_card.coffee"
+spec.registerSchema 'info_card'
 
 describe 'InfoCard', ->
   describe '#parse', ->
@@ -10,4 +11,4 @@ describe 'InfoCard', ->
       buffer = fs.readFileSync 'test/fixture/Info1.wid'
       infoCard = (new InfoCard null, buffer)
       infoCard.parse()
-      spec.validateJSON infoCard.data, 'infoCard'
+      expect(spec.validateJSON infoCard.data, 'info_card').to.be.true

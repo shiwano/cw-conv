@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://schema.cardwirth.org/event#",
+  "required": true,
+
+  "properties": {
+    "children": {
+      "type": "array",
+      "required": true,
+      "items": {
+      }
+    },
+
+    "triggers": {
+      "type": "object",
+      "required": true,
+
+      "properties": {
+        "ids": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "integer"
+          }
+        },
+
+        "keycodes": {
+          "type": "array",
+          "required": true,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

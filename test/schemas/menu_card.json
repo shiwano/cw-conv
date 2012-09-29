@@ -1,0 +1,53 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema#",
+  "id": "http://schema.cardwirth.org/menu_card#",
+  "required": true,
+
+  "properties": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+
+    "description": {
+      "type": "string",
+      "required": true
+    },
+
+    "flag": {
+      "type": "string",
+      "required": true
+    },
+
+    "scale": {
+      "type": "integer",
+      "minimum": 0,
+      "required": true
+    },
+
+    "left": {
+      "type": "integer",
+      "required": true
+    },
+
+    "top": {
+      "type": "integer",
+      "required": true
+    },
+
+    "events": {
+      "type": "array",
+      "required": true,
+      "items": {
+        "$ref": "http://schema.cardwirth.org/event"
+      }
+    },
+
+    "image": {
+      "type": "string",
+      "format": "uri",
+      "required": true
+    }
+  }
+}

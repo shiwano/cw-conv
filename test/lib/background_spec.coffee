@@ -3,6 +3,7 @@ spec = require '../spec_helper'
 fs = require 'fs'
 
 {Area} = spec.require "area.coffee"
+spec.registerSchema 'background'
 
 describe 'BackgroundImage', ->
   describe '#parse', ->
@@ -11,10 +12,4 @@ describe 'BackgroundImage', ->
       area = new Area null, buffer
       areaData = area.parse()
       data = areaData.backgrounds[0]
-      expect(data).to.have.property('top').and.equal 0
-      expect(data).to.have.property('left').and.equal 0
-      expect(data).to.have.property('width').and.equal 632
-      expect(data).to.have.property('height').and.equal 420
-      expect(data).to.have.property('image').and.equal 'MapOfWirth.bmp'
-      expect(data).to.have.property('mask').and.be.false
-      expect(data).to.have.property('flag').and.equal ''
+      expect(spec.validateJSON data, 'background').to.be.true

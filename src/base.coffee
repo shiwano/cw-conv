@@ -314,7 +314,7 @@ define (require, exports, module) ->
     convertCardRarityType: (i) ->
       # 一時的に所持しているだけのF9でなくなるカードの場合は+3されている。
       switch i
-        when 0 then "common"  # 通常
+        when 0 then 'common'  # 通常
         when 1 then 'rare'    # レア
         when 2 then 'premium' # プレミア
         else throw Error "Unknown card rarity type: #{i}"
