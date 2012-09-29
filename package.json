@@ -37,6 +37,7 @@
     "requirejs": "latest",
     "amdefine": "latest",
     "buffertools": "latest",
+    "JSV": "latest",
     "underscore": "latest"
   },
   "keywords": []

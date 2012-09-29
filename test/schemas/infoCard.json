@@ -1,0 +1,35 @@
+{
+  "type":"object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "#",
+  "required":true,
+  "properties":{
+    "description": {
+      "type":"string",
+      "id": "description",
+      "required":true
+    },
+    "id": {
+      "type":"integer",
+      "id": "id",
+      "minimum":0,
+      "required":true
+    },
+    "image": {
+      "type":"string",
+      "id": "image",
+      "format": "uri",
+      "required":true
+    },
+    "name": {
+      "type":"string",
+      "id": "name",
+      "required":true
+    },
+    "type": {
+      "type":"string",
+      "id": "type",
+      "required":true
+    }
+  }
+}
