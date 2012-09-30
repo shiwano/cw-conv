@@ -18,7 +18,7 @@ describe 'SkillCard', ->
       expect(data).to.have.deep.property('aptitude.mental').and.equal 'brave'
       expect(data).to.have.property('ignoreSilence').and.be.true
       expect(data).to.have.property('targetAll').and.be.false
-      expect(data).to.have.property('target').and.equal 'selectedIgnoreSleep'
+      expect(data).to.have.property('target').and.equal 'enemies'
       expect(data).to.have.property('phenomenonType').and.equal 'magicalPhysical'
       expect(data).to.have.property('reactionType').and.equal 'evasion'
       expect(data).to.have.property('successRate').and.equal 2

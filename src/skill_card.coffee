@@ -17,7 +17,7 @@ define (require, exports, module) ->
         mental   : @convertMentalAptitudeType @reader.readInt32()
       @data.ignoreSilence   = not @reader.readBoolean()
       @data.targetAll       = @reader.readBoolean()
-      @data.target          = @convertTargetType @reader.readInt8()
+      @data.target          = @convertCardTargetType @reader.readInt8()
       @data.phenomenonType  = @convertEffectPhenomenonType @reader.readInt8()
       @data.reactionType    = @convertEffectReactionType @reader.readInt8()
       @data.successRate     = @reader.readInt32()
