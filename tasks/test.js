@@ -18,6 +18,7 @@ module.exports = function(grunt) {
   grunt.registerHelper('test', function (filepaths, done) {
     options = grunt.config.get('options.mocha') || {};
     var mocha = new Mocha(options);
+    grunt.file.clearRequireCache(filepaths);
     filepaths.map(mocha.addFile.bind(mocha));
 
     try {

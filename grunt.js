@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  fs = require('fs');
+
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
@@ -29,7 +31,12 @@ module.exports = function(grunt) {
           destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
           grunt.helper('coffee', filepath, destpath);
           specpath = filepath.replace('src', 'test/lib').replace(/\.coffee$/, '_spec.coffee');
-          grunt.helper('test', [specpath], done);
+
+          if (fs.existsSync(specpath)) {
+            grunt.helper('test', [specpath], done);
+          } else {
+            done();
+          }
         },
         deleted: function (filepath, done) {
           destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
