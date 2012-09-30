@@ -2,6 +2,7 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
   {Base} = require './base'
+  {BeastCard} = require './beast_card'
 
   class Effect extends Base
     parse: ->
