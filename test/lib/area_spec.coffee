@@ -1,6 +1,5 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
-fs = require 'fs'
 
 {Area} = spec.require 'area.coffee'
 spec.registerSchemas ['scene', 'menu_card', 'event',
@@ -9,14 +8,14 @@ spec.registerSchemas ['scene', 'menu_card', 'event',
 describe 'Area', ->
   describe '#parse', ->
     it 'should return the area data', ->
-      buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area1.wid'
+      buffer = spec.readFixtureFile 'scenario/goblin_cave/Area1.wid'
       data = (new Area null, buffer).parse()
       expect(spec.validateJSON data, 'scene').to.be.true
 
 describe 'MenuCard', ->
   describe '#parse', ->
     it 'should return the menuCard data', ->
-      buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area3.wid'
+      buffer = spec.readFixtureFile 'scenario/goblin_cave/Area3.wid'
       areaData = (new Area null, buffer).parse()
       data = areaData.menuCards[0]
       expect(spec.validateJSON data, 'menu_card').to.be.true

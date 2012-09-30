@@ -4,4 +4,3 @@ spec = require '../spec_helper'
 main = spec.require "main.coffee"
 
 describe 'main', ->
-  it 'main'

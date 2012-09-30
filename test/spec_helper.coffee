@@ -1,4 +1,5 @@
 fs = require 'fs'
+path = require 'path'
 {JSV} = require 'jsv'
 
 jsv = JSV.createEnvironment()
@@ -13,6 +14,9 @@ global.window =
 
 exports.require = (path) =>
   require "#{__dirname}/../src/#{path}"
+
+exports.readFixtureFile = (name, encoding) ->
+  fs.readFileSync path.join('test/fixtures', name), encoding
 
 exports.registerSchema = (schemaName) ->
   schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'

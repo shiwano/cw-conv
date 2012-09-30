@@ -1,10 +1,9 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
-fs = require 'fs'
 
 {Summary} = spec.require "summary.coffee"
 spec.registerSchemas ['summary', 'flag', 'steps']
-buffer = fs.readFileSync 'test/fixture/Summary.wsm'
+buffer = spec.readFixtureFile 'Summary.wsm'
 
 describe 'Summary', ->
   describe '#parse', ->

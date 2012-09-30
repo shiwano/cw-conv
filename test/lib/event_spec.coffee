@@ -1,6 +1,5 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
-fs = require 'fs'
 
 {Area} = spec.require "area.coffee"
 spec.registerSchema 'event'
@@ -8,7 +7,7 @@ spec.registerSchema 'event'
 describe 'Event', ->
   describe '#parse', ->
     it 'should return the event data', ->
-      buffer = fs.readFileSync 'test/fixture/scenario/goblin_cave/Area2.wid'
+      buffer = spec.readFixtureFile 'scenario/goblin_cave/Area2.wid'
       area = new Area null, buffer
       areaData = area.parse()
       data = areaData.events[0]

@@ -1,6 +1,5 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
-fs = require 'fs'
 require 'buffertools'
 
 {createEventContent} = spec.require "event_content.coffee"
