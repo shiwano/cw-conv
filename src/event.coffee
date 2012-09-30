@@ -11,8 +11,8 @@ define (require, exports, module) ->
       @data.triggers          = {}
       idsLength               = @reader.readInt32()
       @data.triggers.ids      = (@reader.readInt32() for i in [0...idsLength])
-      keycodesLength          = @reader.readString()
-      @data.triggers.keycodes = if keycodesLength then keycodesLength.split('\n') else []
+      keycodes                = @reader.readString()
+      @data.triggers.keycodes = if keycodes then keycodes.split('\n') else []
       @data
 
   class SimpleEvent extends Base
