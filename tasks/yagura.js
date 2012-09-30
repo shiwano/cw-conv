@@ -4,7 +4,7 @@ module.exports = function (grunt) {
   grunt.registerMultiTask('yagura', 'Run callbacks when a file changes', function() {
     if (!grunt.file.watchFiles) {
       grunt.log.error('grunt.file.watchFiles not found.');
-      return;
+      return false;
     }
 
     var changedCallback = this.data.changed,
@@ -41,7 +41,7 @@ module.exports = function (grunt) {
         }
         done();
       }, function (deletedError) {
-        if (taskResult && !changedError && !deletedError) {
+        if (taskResult && !changedError && !deletedError && !grunt.task.current.errorCount) {
           grunt.log.ok("Now it's all quiet.");
           taskDone();
         } else {
