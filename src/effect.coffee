@@ -2,7 +2,6 @@ define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
   {Base} = require './base'
-  {BeastCard} = require './beast_card'
 
   class Effect extends Base
     parse: ->
@@ -25,12 +24,11 @@ define (require, exports, module) ->
         when 5
           @data.value - @reader.readInt32()
           @data.duration = @reader.readInt32()
-        # 技能, 消滅, カードはパス
-        # when 2, 6, 7
-          # 'pass'
+        # 技能(2), 消滅(6), カード(7)はパス
         # 召喚
         when 8
           beastsLength = @reader.readInt32()
+          {BeastCard} = require './beast_card' # lazy require
           @data.beasts = (new BeastCard(@).parse() for i in [0...beastsLength])
 
       @data
