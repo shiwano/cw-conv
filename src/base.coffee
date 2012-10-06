@@ -57,7 +57,7 @@ define (require, exports, module) ->
         when 19 then 'branchByAlly'           # キャスト存在分岐
         when 20 then 'branchByItem'           # アイテム所持分岐
         when 21 then 'branchBySkill'          # スキル所持分岐
-        when 22 then 'branchByInfomation'     # 情報所持分岐
+        when 22 then 'branchByInformation'    # 情報所持分岐
         when 23 then 'branchByBeast'          # 召喚獣存在分岐
         when 24 then 'branchByMoney'          # 所持金分岐
         when 25 then 'branchByAchievement'    # 称号分岐

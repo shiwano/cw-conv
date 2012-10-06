@@ -1,7 +1,6 @@
 define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
-  {Effect} = require './effect'
   {Base} = require './base'
   {BackgroundImage} = require './background_image'
   EventContent = {}
@@ -77,7 +76,11 @@ define (require, exports, module) ->
 
   class EventContent.Effect extends EventContentBase
     parse: ->
-      super()
+      @data.type     = @convertEventContentType @reader.readInt8()
+      @data.label    = @reader.readString()
+      childrenLength = @reader.readInt32() % 10000
+      @data.children = (createEventContent(@).parse() for i in [0...childrenLength])
+      @reader.seek 4 if @isInnData
       @data.level = @reader.readInt32()
       @data.target = @convertTargetType @reader.readInt8(), true
       @data.phenomenonType = @convertEffectPhenomenonType @reader.readInt8()
@@ -86,6 +89,7 @@ define (require, exports, module) ->
       @data.sound = @reader.readString()
       @data.animationType = @convertEffectAnimationType @reader.readInt8()
       effectsLength = @reader.readInt32()
+      {Effect} = require './effect'
       @data.effects = (new Effect(@).parse() for i in [0...effectsLength])
       @data
 
@@ -138,7 +142,7 @@ define (require, exports, module) ->
       @data.value = @reader.readInt32()
       @data
 
-  class EventContent.BranchByCast extends EventContentBase
+  class EventContent.BranchByAlly extends EventContentBase
     parse: ->
       super()
       @data.id = @reader.readInt32()
@@ -184,7 +188,7 @@ define (require, exports, module) ->
     parse: ->
       super()
       @data.achievement = @reader.readString()
-      @reader.skip 4 # skip the unknown data
+      @reader.seek 4 # skip the unknown data
       @data.targetScope = @convertTargetScopeType @reader.readInt8()
       @data
 
@@ -284,7 +288,7 @@ define (require, exports, module) ->
     parse: ->
       super()
       @data.achievement = @reader.readString()
-      @reader.skip 4 # skip the unknown data
+      @reader.seek 4 # skip the unknown data
       @data.targetScope = @convertTargetScopeType @reader.readInt8()
       @data
 
@@ -330,14 +334,14 @@ define (require, exports, module) ->
   class EventContent.BranchByLevel extends EventContentBase
     parse: ->
       super()
-      @data.useAverage = @reader.readBollean()
+      @data.useAverage = @reader.readBoolean()
       @data.value = @reader.readInt32()
       @data
 
   class EventContent.BranchByState extends EventContentBase
     parse: ->
       super()
-      @data.state = @convertCharacterSteteType @reader.readInt8()
+      @data.state = @convertCharacterStateType @reader.readInt8()
       @data.target = @convertTargetType @reader.readInt8()
       @data
 
@@ -359,13 +363,13 @@ define (require, exports, module) ->
       @data.start = @reader.readString()
       @data
 
-  class EventContent.PackegeLink extends EventContentBase
+  class EventContent.PackageLink extends EventContentBase
     parse: ->
       super()
       @data.id = @reader.readInt32()
       @data
 
-  class EventContent.PackegeCall extends EventContentBase
+  class EventContent.PackageCall extends EventContentBase
     parse: ->
       super()
       @data.id = @reader.readInt32()
