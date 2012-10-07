@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Summary} = spec.require "summary.coffee"
-spec.registerSchemas ['summary', 'flag', 'steps']
+spec.registerSchema 'summary', 'flag', 'steps'
 buffer = spec.readFixtureFile 'Summary.wsm'
 
 describe 'Summary', ->

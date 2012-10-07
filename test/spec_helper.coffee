@@ -18,14 +18,11 @@ exports.require = (path) =>
 exports.readFixtureFile = (name, encoding) ->
   fs.readFileSync path.join('test/fixtures', name), encoding
 
-exports.registerSchema = (schemaName) ->
-  schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'
-  schemaData = JSON.parse schemaString
-  jsv.createSchema schemaData
-
-exports.registerSchemas = (schemaNames) ->
-  for schemaName in schemaNames
-    exports.registerSchema schemaName
+exports.registerSchema = ->
+  for schemaName in [arguments...]
+    schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'
+    schemaData = JSON.parse schemaString
+    jsv.createSchema schemaData
 
 exports.validateJSON = (data, schemaName) ->
   schema = jsv.findSchema "http://schema.cardwirth.org/#{schemaName}"

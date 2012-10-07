@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {BeastCard} = spec.require "beast_card.coffee"
-spec.registerSchemas ['beast_card', 'simple_event', 'core']
+spec.registerSchema 'beast_card', 'simple_event', 'core'
 
 describe 'BeastCard', ->
   describe '#parse', ->

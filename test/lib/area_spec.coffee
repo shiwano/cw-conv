@@ -2,8 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Area} = spec.require 'area.coffee'
-spec.registerSchemas ['scene', 'menu_card', 'event',
-  'background', 'core']
+spec.registerSchema 'scene', 'menu_card', 'event', 'background', 'core'
 
 describe 'Area', ->
   describe '#parse', ->
