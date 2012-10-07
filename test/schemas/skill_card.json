@@ -4,6 +4,10 @@
   "id": "http://schema.cardwirth.org/skill_card#",
   "required": true,
 
+  "extends": {
+    "$ref": "http://schema.cardwirth.org/card"
+  },
+
   "properties": {
     "type": {
       "enum": ["skillCard"],
@@ -22,151 +26,6 @@
       "maximum": 10,
       "minimum": 0,
       "required": true
-    },
-
-    "id": {
-      "type": "integer",
-      "minimum": 0,
-      "required": true
-    },
-
-    "name": {
-      "type": "string",
-      "required": true
-    },
-
-    "description": {
-      "type": "string",
-      "required": true
-    },
-
-    "image": {
-      "type": "string",
-      "format": "uri",
-      "required": true
-    },
-
-    "physicalAptitude": {
-      "type": "string",
-      "required": true
-    },
-
-    "mentalAptitude": {
-      "type": "string",
-      "required": true
-    },
-
-    "ignoreSilence": {
-      "type": "boolean",
-      "required": true
-    },
-
-    "targetAll": {
-      "type": "boolean",
-      "required": true
-    },
-
-    "target": {
-      "$ref": "http://schema.cardwirth.org/core#/cardTarget",
-      "required": true
-    },
-
-    "phenomenonType": {
-      "$ref": "http://schema.cardwirth.org/core#/phenomenonType",
-      "required": true
-    },
-
-    "reactionType": {
-      "$ref": "http://schema.cardwirth.org/core#/reactionType",
-      "required": true
-    },
-
-    "successRate": {
-      "type": "integer",
-      "maximum": 5,
-      "minimum": -5,
-      "required": true
-    },
-
-    "animationType": {
-      "$ref": "http://schema.cardwirth.org/core#/animationType",
-      "required": true
-    },
-
-    "evasionBonus": {
-      "type": "integer",
-      "maximum": 10,
-      "minimum": -10,
-      "required": true
-    },
-
-    "resistanceBonus": {
-      "type": "integer",
-      "maximum": 10,
-      "minimum": -10,
-      "required": true
-    },
-
-    "defenseBonus": {
-      "type": "integer",
-      "maximum": 10,
-      "minimum": -10,
-      "required": true
-    },
-
-    "soundBefore": {
-      "type": "string",
-      "format": "uri",
-      "required": true
-    },
-
-    "soundAfter": {
-      "type": "string",
-      "format": "uri",
-      "required": true
-    },
-
-    "keycodes": {
-      "type": "array",
-      "required": true,
-      "items": {
-        "type": "string"
-      }
-    },
-
-    "rarity": {
-      "$ref": "http://schema.cardwirth.org/core#/rarity",
-      "required": true
-    },
-
-    "scenario": {
-      "type": "string",
-      "required": true
-    },
-
-    "author": {
-      "type": "string",
-      "required": true
-    },
-
-    "reserved": {
-      "type": "boolean",
-      "required": true
-    },
-
-    "effects": {
-      "type": "array",
-      "required": true,
-      "items": {
-      }
-    },
-
-    "events": {
-      "type": "array",
-      "required": true,
-      "items": {
-        "$ref": "http://schema.cardwirth.org/simple_event"
-      }
     }
   }
 }
