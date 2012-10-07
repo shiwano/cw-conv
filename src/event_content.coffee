@@ -105,9 +105,8 @@ define (require, exports, module) ->
       super()
       @data.value = @reader.readInt32()
       @data.target = @convertTargetType @reader.readInt8()
-      @data.aptitude =
-        physical: @convertPhysicalAptitudeType @reader.readInt32()
-        mental: @convertMentalAptitudeType @reader.readInt32()
+      @data.physicalAptitude = @convertPhysicalAptitudeType @reader.readInt32()
+      @data.mentalAptitude = @convertMentalAptitudeType @reader.readInt32()
       @data
 
   class EventContent.BranchByRandom extends EventContentBase

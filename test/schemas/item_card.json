@@ -74,21 +74,14 @@
       "required": true
     },
 
-    "aptitude": {
-      "type": "object",
-      "required": true,
+    "physicalAptitude": {
+      "type": "string",
+      "required": true
+    },
 
-      "properties": {
-        "physical": {
-          "type": "string",
-          "required": true
-        },
-
-        "mental": {
-          "type": "string",
-          "required": true
-        }
-      }
+    "mentalAptitude": {
+      "type": "string",
+      "required": true
     },
 
     "ignoreSilence": {
