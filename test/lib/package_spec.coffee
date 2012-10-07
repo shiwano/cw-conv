@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Package} = spec.require "package.coffee"
-#spec.registerSchema 'info_card'
+spec.registerSchemas ['package', 'simple_event', 'core']
 
 describe 'Package', ->
   describe '#parse', ->
@@ -10,5 +10,4 @@ describe 'Package', ->
       buffer = spec.readFixtureFile 'Package1.wid'
       pack = (new Package null, buffer)
       pack.parse()
-      p pack.data
-      #expect(spec.validateJSON package.data, 'info_card').to.be.true
+      expect(spec.validateJSON pack.data, 'package').to.be.true
