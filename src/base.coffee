@@ -54,21 +54,21 @@ define (require, exports, module) ->
         when 16 then 'flag'                   # フラグ変更
         when 17 then 'branchBySteps'          # ステップ多岐分岐
         when 18 then 'steps'                  # ステップ変更
-        when 19 then 'branchByAlly'           # キャスト存在分岐
+        when 19 then 'branchByFriend'         # キャスト存在分岐
         when 20 then 'branchByItem'           # アイテム所持分岐
         when 21 then 'branchBySkill'          # スキル所持分岐
         when 22 then 'branchByInformation'    # 情報所持分岐
         when 23 then 'branchByBeast'          # 召喚獣存在分岐
         when 24 then 'branchByMoney'          # 所持金分岐
         when 25 then 'branchByAchievement'    # 称号分岐
-        when 26 then 'ally'                   # キャスト加入
+        when 26 then 'friend'                 # キャスト加入
         when 27 then 'item'                   # アイテム入手
         when 28 then 'skill'                  # スキル入手
         when 29 then 'information'            # 情報入手
         when 30 then 'beast'                  # 召喚獣獲得
         when 31 then 'money'                  # 所持金増加
         when 32 then 'achievement'            # 称号付与
-        when 33 then 'allyLoss'               # キャスト離脱
+        when 33 then 'friendLoss'             # キャスト離脱
         when 34 then 'itemLoss'               # アイテム喪失
         when 35 then 'skillLoss'              # スキル喪失
         when 36 then 'informationLoss'        # 情報喪失
