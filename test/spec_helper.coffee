@@ -18,6 +18,12 @@ exports.require = (path) =>
 exports.readFixtureFile = (name, encoding) ->
   fs.readFileSync path.join('test/fixtures', name), encoding
 
+exports.findEventElements = (eventName, event, results=[]) ->
+  for elem in event.children
+    results.push elem if elem.type is eventName
+    exports.findEventElements eventName, elem, results
+  results
+
 exports.registerSchema = ->
   for schemaName in [arguments...]
     schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'

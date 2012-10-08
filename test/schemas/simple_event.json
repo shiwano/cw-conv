@@ -6,10 +6,7 @@
 
   "properties": {
     "children": {
-      "type": "array",
-      "required": true,
-      "items": {
-      }
+      "$ref": "http://schema.cardwirth.org/event_element#eventElements"
     }
   }
 }

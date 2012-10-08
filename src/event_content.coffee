@@ -19,7 +19,7 @@ define (require, exports, module) ->
   class EventContent.StartLink extends EventContentBase
     parse: ->
       super
-      @data.start = @reader.readString()
+      @data.startLabel = @reader.readString()
       @data
 
   class EventContent.Battle extends EventContentBase
@@ -118,27 +118,27 @@ define (require, exports, module) ->
   class EventContent.BranchByFlag extends EventContentBase
     parse: ->
       super
-      @data.flag = @reader.readString()
+      @data.flagName = @reader.readString()
       @data
 
   class EventContent.Flag extends EventContentBase
     parse: ->
       super
-      @data.flag = @reader.readString()
-      @data.value = @reader.readBoolean()
+      @data.flagName = @reader.readString()
+      @data.flag = @reader.readBoolean()
       @data
 
   class EventContent.BranchBySteps extends EventContentBase
     parse: ->
       super
-      @data.steps = @reader.readString()
+      @data.stepsName = @reader.readString()
       @data
 
   class EventContent.Steps extends EventContentBase
     parse: ->
       super
-      @data.steps = @reader.readString()
-      @data.value = @reader.readInt32()
+      @data.stepsName = @reader.readString()
+      @data.step = @reader.readInt32()
       @data
 
   class EventContent.BranchByFriend extends EventContentBase
@@ -237,7 +237,7 @@ define (require, exports, module) ->
     parse: ->
       super
       @data.achievement = @reader.readString()
-      @data.score = @reader.readInt32()
+      @data.achievementScore = @reader.readInt32()
       @data.targetScope = @convertTargetScopeType @reader.readInt8()
       @data
 
@@ -309,26 +309,26 @@ define (require, exports, module) ->
   class EventContent.StepUp extends EventContentBase
     parse: ->
       super
-      @data.ref = @reader.readString()
+      @data.stepsName = @reader.readString()
       @data
 
   class EventContent.StepDown extends EventContentBase
     parse: ->
       super
-      @data.ref = @reader.readString()
+      @data.stepsName = @reader.readString()
       @data
 
   class EventContent.FlagReverse extends EventContentBase
     parse: ->
       super
-      @data.ref = @reader.readString()
+      @data.flagName = @reader.readString()
       @data
 
   class EventContent.BranchByCurrentStep extends EventContentBase
     parse: ->
       super
-      @data.ref = @reader.readString()
-      @data.value = @reader.readInt32()
+      @data.stepsName = @reader.readString()
+      @data.step = @reader.readInt32()
       @data
 
   class EventContent.TimePassage extends EventContentBase
@@ -340,10 +340,10 @@ define (require, exports, module) ->
       @data.level = @reader.readInt32()
       @data
 
-  class EventContent.BranchByState extends EventContentBase
+  class EventContent.BranchByCharacterState extends EventContentBase
     parse: ->
       super
-      @data.state = @convertCharacterStateType @reader.readInt8()
+      @data.characterState = @convertCharacterStateType @reader.readInt8()
       @data.target = @convertTargetType @reader.readInt8()
       @data
 
@@ -362,7 +362,7 @@ define (require, exports, module) ->
   class EventContent.StartCall extends EventContentBase
     parse: ->
       super
-      @data.start = @reader.readString()
+      @data.startLabel = @reader.readString()
       @data
 
   class EventContent.PackageLink extends EventContentBase
@@ -424,7 +424,7 @@ define (require, exports, module) ->
   class EventContent.FlagCheck extends EventContentBase
     parse: ->
       super
-      @data.flag = @reader.readString()
+      @data.flagName = @reader.readString()
       @data
 
   createEventContent = (parent) ->

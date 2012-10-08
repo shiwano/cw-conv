@@ -28,13 +28,11 @@
     },
 
     "physicalAptitude": {
-      "$ref": "http://schema.cardwirth.org/core#physicalAptitude",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#physicalAptitude"
     },
 
     "mentalAptitude": {
-      "$ref": "http://schema.cardwirth.org/core#mentalAptitude",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#mentalAptitude"
     },
 
     "ignoreSilence": {
@@ -48,18 +46,15 @@
     },
 
     "target": {
-      "$ref": "http://schema.cardwirth.org/core#cardTarget",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#cardTarget"
     },
 
     "phenomenonType": {
-      "$ref": "http://schema.cardwirth.org/core#phenomenonType",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#phenomenonType"
     },
 
     "reactionType": {
-      "$ref": "http://schema.cardwirth.org/core#reactionType",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#reactionType"
     },
 
     "successRate": {
@@ -70,8 +65,7 @@
     },
 
     "animationType": {
-      "$ref": "http://schema.cardwirth.org/core#animationType",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#animationType"
     },
 
     "evasionBonus": {
@@ -116,8 +110,7 @@
     },
 
     "rarity": {
-      "$ref": "http://schema.cardwirth.org/core#rarity",
-      "required": true
+      "$ref": "http://schema.cardwirth.org/core#rarity"
     },
 
     "scenario": {

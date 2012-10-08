@@ -82,7 +82,7 @@ define (require, exports, module) ->
         when 44 then 'branchByCurrentStep'    # ステップ上下分岐
         when 45 then 'timePassage'            # 時間経過
         when 46 then 'branchByLevel'          # レベル分岐
-        when 47 then 'branchByState'          # 状態分岐
+        when 47 then 'branchByCharacterState' # 状態分岐
         when 48 then 'branchByPartyNumber'    # 人数判定分岐
         when 49 then 'partyShow'              # パーティ表示
         when 50 then 'partyHide'              # パーティ隠蔽
