@@ -5,7 +5,7 @@
 
   "properties" : {
     "eventTarget" : {
-      "id": "http://schema.cardwirth.org/core#/eventTarget",
+      "id": "#eventTarget",
       "description": "現在選択中のメンバ, ランダムメンバ, 現在選択中以外のメンバ, 現在選択中のメンバ・睡眠有効, ランダムメンバ・睡眠有効, パーティ全員・睡眠有効, パーティ全員（効果コンテント用）",
       "enum": [
         "selected",
@@ -19,7 +19,7 @@
     },
 
     "eventTargetScope" : {
-      "id": "http://schema.cardwirth.org/core#/eventTargetScope",
+      "id": "#eventTargetScope",
       "description": "現在選択中のメンバ, ランダムメンバ, パーティ全員, 荷物袋, 全体・荷物袋含む, フィールド全体",
       "enum": [
         "selected",
@@ -32,7 +32,7 @@
     },
 
     "cardArrangement" : {
-      "id": "http://schema.cardwirth.org/core#/cardArrangement",
+      "id": "#cardArrangement",
       "description": "自動配置, 指定配置",
       "enum": [
         "auto",
@@ -41,7 +41,7 @@
     },
 
     "characterState" : {
-      "id": "http://schema.cardwirth.org/core#/characterState",
+      "id": "#characterState",
       "description": "行動可能, 行動不可, 生存, 非生存, 健康, 負傷, 重症, 意識不明, 毒, 睡眠, 呪縛, 麻痺・石化",
       "enum": [
         "active",
@@ -60,7 +60,7 @@
     },
 
     "elementType" : {
-      "id": "http://schema.cardwirth.org/core#/elementType",
+      "id": "#elementType",
       "description": "全, 肉体, 精神, 神聖, 魔力, 炎, 冷",
       "enum": [
         "non",
@@ -74,7 +74,7 @@
     },
 
     "effectType" : {
-      "id": "http://schema.cardwirth.org/core#/effectType",
+      "id": "#effectType",
       "description": "回復, ダメージ, 吸収, 麻痺状態, 麻痺解除, 中毒状態, 中毒解除, 精神力回復, 精神力不能, 睡眠状態, 混乱状態, 激昂状態, 勇敢状態, 恐慌状態, 正常状態, 束縛状態, 束縛解除, 沈黙状態, 沈黙解除, 暴露状態, 暴露解除, 魔法無効化状態, 魔法無効化解除, 行動力変化, 回避力変化, 抵抗力変化, 防御力変化, 対象消去, カード消去, 召喚獣消去, 通常攻撃, 渾身の一撃, 会心の一撃, フェイント, 防御, 見切り, 混乱, 特殊技能, 召喚獣召喚",
       "enum": [
         "heal",
@@ -120,7 +120,7 @@
     },
 
     "damageType" : {
-      "id": "http://schema.cardwirth.org/core#/damageType",
+      "id": "#damageType",
       "description": "レベル比, 効果値, 最大値",
       "enum": [
         "levelRatio",
@@ -130,7 +130,7 @@
     },
 
     "phenomenonType" : {
-      "id": "http://schema.cardwirth.org/core#/phenomenonType",
+      "id": "#phenomenonType",
       "description": "物理, 魔法, 魔法的物理, 物理的魔法, 無",
       "enum": [
         "physical",
@@ -142,7 +142,7 @@
     },
 
     "reactionType" : {
-      "id": "http://schema.cardwirth.org/core#/reactionType",
+      "id": "#reactionType",
       "description": "物理属性, 抵抗属性, 必中属性",
       "enum": [
         "evasion",
@@ -152,7 +152,7 @@
     },
 
     "animationType" : {
-      "id": "http://schema.cardwirth.org/core#/animationType",
+      "id": "#animationType",
       "description": "無し, 反転, 横振動, 縦振動",
       "enum": [
         "none",
@@ -163,7 +163,7 @@
     },
 
     "physicalAptitude" : {
-      "id": "http://schema.cardwirth.org/core#/physicalAptitude",
+      "id": "#physicalAptitude",
       "description": "器用, 素早さ, 知力, 筋力, 生命, 精神",
       "enum": [
         "dex",
@@ -176,7 +176,7 @@
     },
 
     "mentalAptitude" : {
-      "id": "http://schema.cardwirth.org/core#/mentalAptitude",
+      "id": "#mentalAptitude",
       "description": "好戦, 平和, 社交, 内向, 勇敢, 臆病, 慎重, 大胆, 狡猾, 正直",
       "enum": [
         "aggressive",
@@ -193,7 +193,7 @@
     },
 
     "cardTarget" : {
-      "id": "http://schema.cardwirth.org/core#/cardTarget",
+      "id": "#cardTarget",
       "description": "対象なし, 使用者, 味方, 敵, 敵・味方両方",
       "enum": [
         "none",
@@ -205,7 +205,7 @@
     },
 
     "rarity" : {
-      "id": "http://schema.cardwirth.org/core#/rarity",
+      "id": "#rarity",
       "description": "通常, レア, プレミア",
       "enum": [
         "common",
@@ -215,7 +215,7 @@
     },
 
     "mentality" : {
-      "id": "http://schema.cardwirth.org/core#/mentality",
+      "id": "#mentality",
       "description": "正常, 恐慌, 勇敢, 激昂, 混乱, 睡眠",
       "enum": [
         "normal",

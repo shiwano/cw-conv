@@ -28,12 +28,12 @@
     },
 
     "physicalAptitude": {
-      "type": "string",
+      "$ref": "http://schema.cardwirth.org/core#physicalAptitude",
       "required": true
     },
 
     "mentalAptitude": {
-      "type": "string",
+      "$ref": "http://schema.cardwirth.org/core#mentalAptitude",
       "required": true
     },
 
@@ -48,17 +48,17 @@
     },
 
     "target": {
-      "$ref": "http://schema.cardwirth.org/core#/cardTarget",
+      "$ref": "http://schema.cardwirth.org/core#cardTarget",
       "required": true
     },
 
     "phenomenonType": {
-      "$ref": "http://schema.cardwirth.org/core#/phenomenonType",
+      "$ref": "http://schema.cardwirth.org/core#phenomenonType",
       "required": true
     },
 
     "reactionType": {
-      "$ref": "http://schema.cardwirth.org/core#/reactionType",
+      "$ref": "http://schema.cardwirth.org/core#reactionType",
       "required": true
     },
 
@@ -70,7 +70,7 @@
     },
 
     "animationType": {
-      "$ref": "http://schema.cardwirth.org/core#/animationType",
+      "$ref": "http://schema.cardwirth.org/core#animationType",
       "required": true
     },
 
@@ -116,7 +116,7 @@
     },
 
     "rarity": {
-      "$ref": "http://schema.cardwirth.org/core#/rarity",
+      "$ref": "http://schema.cardwirth.org/core#rarity",
       "required": true
     },
 
