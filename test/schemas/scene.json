@@ -22,7 +22,7 @@
     },
 
     "cardArrangement": {
-      "$ref": "http://schema.cardwirth.org/core#cardArrangement",
+      "$ref": "http://schema.cardwirth.org/utils#cardArrangement",
       "required": true
     },
 

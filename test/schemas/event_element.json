@@ -184,7 +184,7 @@
     "targetScope": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#eventTargetScope"
+        "$ref": "http://schema.cardwirth.org/utils#eventTargetScope"
       }
     },
 
@@ -241,7 +241,7 @@
     "characterState": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#characterState"
+        "$ref": "http://schema.cardwirth.org/utils#characterState"
       }
     },
 
@@ -260,14 +260,14 @@
     "physicalAptitude": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#physicalAptitude"
+        "$ref": "http://schema.cardwirth.org/utils#physicalAptitude"
       }
     },
 
     "mentalAptitude": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#mentalAptitude"
+        "$ref": "http://schema.cardwirth.org/utils#mentalAptitude"
       }
     },
 
@@ -280,21 +280,21 @@
     "target": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#eventTarget"
+        "$ref": "http://schema.cardwirth.org/utils#eventTarget"
       }
     },
 
     "phenomenonType": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#phenomenonType"
+        "$ref": "http://schema.cardwirth.org/utils#phenomenonType"
       }
     },
 
     "reactionType": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#reactionType"
+        "$ref": "http://schema.cardwirth.org/utils#reactionType"
       }
     },
 
@@ -307,7 +307,7 @@
     "animationType": {
       "required": false,
       "extends": {
-        "$ref": "http://schema.cardwirth.org/core#animationType"
+        "$ref": "http://schema.cardwirth.org/utils#animationType"
       }
     },
 

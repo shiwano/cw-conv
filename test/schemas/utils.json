@@ -1,6 +1,6 @@
 {
   "$schema" : "http://json-schema.org/draft-03/schema#",
-  "id" : "http://schema.cardwirth.org/core#",
+  "id" : "http://schema.cardwirth.org/utils#",
   "type" : "object",
 
   "properties" : {
