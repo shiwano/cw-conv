@@ -25,7 +25,7 @@ exports.findEventElements = (eventName, event, results=[]) ->
   results
 
 exports.registerSchema = ->
-  for schemaName in [arguments...]
+  for schemaName in arguments
     schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'
     schemaData = JSON.parse schemaString
     jsv.createSchema schemaData
