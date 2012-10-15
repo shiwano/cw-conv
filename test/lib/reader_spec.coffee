@@ -31,11 +31,12 @@ describe 'Reader', ->
       reader.readImageAsDataURI()
       expect(reader.readString()).to.equal 'ゴブリンの洞窟'
 
-    it 'should return the empty string when the string length is 0', ->
-      buffer = new Buffer(4)
-      [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
-      reader = new Reader(buffer)
-      expect(reader.readString()).to.equal ''
+    context 'when the string length is 0', ->
+      it 'should return the empty string', ->
+        buffer = new Buffer(4)
+        [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
+        reader = new Reader(buffer)
+        expect(reader.readString()).to.equal ''
 
   describe '#readInt8', ->
     it 'should return the CHAR data', ->
@@ -62,11 +63,12 @@ describe 'Reader', ->
       fixtureImageBuf = spec.readFixtureFile 'Summary.bmp'
       expect(imageBuf.equals(fixtureImageBuf)).to.be.true
 
-    it 'should return the null when image data length is 0', ->
-      buffer = new Buffer(4)
-      [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
-      reader = new Reader(buffer)
-      expect(reader.readImage()).to.be.null
+    context 'when the image data length is 0', ->
+      it 'should return the null', ->
+        buffer = new Buffer(4)
+        [0, 0, 0, 0].forEach (i, idx) -> buffer[idx] = i
+        reader = new Reader(buffer)
+        expect(reader.readImage()).to.be.null
 
   describe '#readImageAsDataURI', ->
     it 'should return the dataUri string of the image data', ->
