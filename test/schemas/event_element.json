@@ -315,6 +315,7 @@
       "type": "array",
 
       "items": {
+        "$ref": "http://schema.cardwirth.org/effect"
       }
     }
   }

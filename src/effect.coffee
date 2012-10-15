@@ -29,7 +29,7 @@ define (require, exports, module) ->
         when 8
           beastsLength = @reader.readInt32()
           {BeastCard} = require './beast_card' # lazy require
-          @data.beasts = (new BeastCard(@).parse() for i in [0...beastsLength])
+          @data.beastCards = (new BeastCard(@).parse() for i in [0...beastsLength])
 
       @data
 
