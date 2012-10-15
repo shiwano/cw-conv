@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Package} = spec.require "package.coffee"
-spec.registerSchema 'utils', 'background', 'event_element', 'simple_event', 'package'
+spec.registerSchema 'package'
 
 describe 'Package', ->
   describe '#parse', ->

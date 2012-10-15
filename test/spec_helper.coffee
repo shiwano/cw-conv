@@ -24,14 +24,22 @@ exports.findEventElements = (eventName, event, results=[]) ->
     exports.findEventElements eventName, elem, results
   results
 
+findSchema = (schemaName) ->
+  jsv.findSchema "http://schema.cardwirth.org/#{schemaName}"
+
 exports.registerSchema = ->
   for schemaName in arguments
+    schema = findSchema schemaName
+    continue if schema?
     schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'
     schemaData = JSON.parse schemaString
     jsv.createSchema schemaData
 
+exports.registerSchema 'utils', 'simple_event', 'event', 'event_element',
+  'effect', 'background', 'card', 'beast_card'
+
 exports.validateJSON = (data, schemaName) ->
-  schema = jsv.findSchema "http://schema.cardwirth.org/#{schemaName}"
+  schema = findSchema schemaName
   validation = schema.validate(data)
   if validation.errors.length
     throw Error JSON.stringify(validation.errors, null, 2)
