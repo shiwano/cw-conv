@@ -9,5 +9,5 @@ describe 'Package', ->
     it 'should return the Package data', ->
       buffer = spec.readFixtureFile 'Package1.wid'
       pack = (new Package null, buffer)
-      pack.parse()
-      expect(spec.validateJSON pack.data, 'package').to.be.true
+      data = pack.parse()
+      expect(spec.validateJSON data, 'package').to.be.true
