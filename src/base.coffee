@@ -290,16 +290,16 @@ define (require, exports, module) ->
 
     convertMentalAptitudeType: (i) ->
       switch i
-        when  1 then 'aggressive'    # 好戦
-        when -1 then 'unaggressive'  # 平和
-        when  2 then 'cheerful'      # 社交
-        when -2 then 'uncheerful'    # 内向
-        when  3 then 'brave'         # 勇敢
-        when -3 then 'unbrave'       # 臆病
-        when  4 then 'cautious'      # 慎重
-        when -4 then 'uncautious'    # 大胆
-        when  5 then 'trickish'      # 狡猾
-        when -5 then 'untrickish'    # 正直
+        when  1 then 'aggressiveness' # 好戦
+        when -1 then 'gentleness'     # 平和
+        when  2 then 'cheerfulness'   # 社交
+        when -2 then 'depressiveness' # 内向
+        when  3 then 'braveness'      # 勇敢
+        when -3 then 'timidness'      # 臆病
+        when  4 then 'carefulness'    # 慎重
+        when -4 then 'boldness'       # 大胆
+        when  5 then 'craftiness'     # 狡猾
+        when -5 then 'truthfulness'   # 正直
         else throw Error "Unknown card mental aptitude type: #{i}"
 
     convertCardTargetType: (i) ->

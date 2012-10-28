@@ -118,16 +118,16 @@
       "description": "好戦, 平和, 社交, 内向, 勇敢, 臆病, 慎重, 大胆, 狡猾, 正直",
       "required": true,
       "enum": [
-        "aggressive",
-        "unaggressive",
-        "cheerful",
-        "uncheerful",
-        "brave",
-        "unbrave",
-        "cautious",
-        "uncautious",
-        "trickish",
-        "untrickish"
+        "aggressiveness",
+        "gentleness",
+        "cheerfulness",
+        "depressiveness",
+        "braveness",
+        "timidness",
+        "carefulness",
+        "boldness",
+        "craftiness",
+        "truthfulness"
       ]
     },
 
