@@ -3,6 +3,7 @@
   "$schema": "http://json-schema.org/draft-03/schema#",
   "id": "http://schema.cardwirth.org/skill_card#",
   "required": true,
+  "additionalProperties": false,
 
   "extends": {
     "$ref": "http://schema.cardwirth.org/card"

@@ -3,10 +3,17 @@
   "$schema": "http://json-schema.org/draft-03/schema#",
   "id": "http://schema.cardwirth.org/summary#",
   "required": true,
+  "additionalProperties": false,
 
   "properties": {
     "type": {
       "type": "string",
+      "required": true
+    },
+
+    "image": {
+      "type": "string",
+      "format": "uri",
       "required": true
     },
 
