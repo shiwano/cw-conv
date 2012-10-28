@@ -168,7 +168,7 @@ define (require, exports, module) ->
         when 1 then 'body'  # 肉体属性
         when 2 then 'mind'  # 精神属性
         when 3 then 'holy'  # 神聖属性
-        when 4 then 'magic' # 魔力属性
+        when 4 then 'spell' # 魔力属性
         when 5 then 'fire'  # 炎属性
         when 6 then 'cold'  # 冷属性
         else throw Error "Unknown effect element type: #{i}"
