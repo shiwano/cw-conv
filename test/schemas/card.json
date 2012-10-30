@@ -132,6 +132,7 @@
       "type": "array",
       "required": true,
       "items": {
+        "$ref": "http://schema.cardwirth.org/effect#"
       }
     },
 
