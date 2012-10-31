@@ -1,6 +1,7 @@
 define = require('amdefine')(module) if typeof window.define isnt 'function'
 
 define (require, exports, module) ->
+  utils = require './utils'
   {Base} = require './base'
   {BackgroundImage} = require './background_image'
   EventContent = {}
@@ -430,7 +431,7 @@ define (require, exports, module) ->
   createEventContent = (parent) ->
     type = parent.convertEventContentType parent.reader.readInt8()
     parent.reader.seek -1
-    upperCamelCasedType = type.replace /^./, (s) -> s.toUpperCase()
+    upperCamelCasedType = utils.toUpperCamelCase type
     content = new EventContent[upperCamelCasedType](parent)
     content
 
