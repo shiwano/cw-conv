@@ -10,7 +10,9 @@ define (require, exports, module) ->
     return 'summary' if filename is 'Summary.wsm'
     {Base} = require './base'
     file = new Base null, buffer
-    file.convertScenarioDataType file.reader.readInt8()
+    typeId = file.reader.readInt8()
+    return 'package' if typeId is 4 and filename.indexOf('Package') is 0
+    file.convertScenarioDataType typeId
 
   exports.toUpperCamelCase = (string) ->
     string.replace /^./, (s) -> s.toUpperCase()

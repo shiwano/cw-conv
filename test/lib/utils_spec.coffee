@@ -14,17 +14,18 @@ describe 'utils', ->
   describe '#detectDataType', ->
     it 'should return the data type name', ->
       buffer = spec.readFixtureFile 'scenario/goblin_cave/Area1.wid'
-      result = utils.detectDataType buffer, 'Area1.wid'
-      expect(result).to.be.equal 'scene'
+      expect(utils.detectDataType buffer, 'Area1.wid').to.be.equal 'scene'
 
       buffer = spec.readFixtureFile 'Summary.wsm'
-      result = utils.detectDataType buffer, 'Summary.wsm'
-      expect(result).to.be.equal 'summary'
+      expect(utils.detectDataType buffer, 'Summary.wsm').to.be.equal 'summary'
+
+      buffer = spec.readFixtureFile 'Package1.wid'
+      expect(utils.detectDataType buffer, 'Package1.wid').to.be.equal 'package'
+
+      buffer = spec.readFixtureFile 'Info1.wid'
+      expect(utils.detectDataType buffer, 'Info1.wid').to.be.equal 'infoCard'
 
   describe '#toUpperCamelCase', ->
     it 'should make a given string upperCamelCased', ->
-      result = utils.toUpperCamelCase 'finalFantasy'
-      expect(result).to.be.equal 'FinalFantasy'
-
-      result = utils.toUpperCamelCase 'DragonQuest'
-      expect(result).to.be.equal 'DragonQuest'
+      expect(utils.toUpperCamelCase 'finalFantasy').to.be.equal 'FinalFantasy'
+      expect(utils.toUpperCamelCase 'DragonQuest').to.be.equal 'DragonQuest'
