@@ -39,10 +39,7 @@ module.exports = function (grunt) {
 
   grunt.registerHelper('coffee', function (src, dest) {
     options = grunt.config.get('options.coffee') || {};
-
-    if (options.bare !== false) {
-      options.bare = true;
-    }
+    options.filename = src;
 
     try {
       var js = coffee.compile(grunt.file.read(src), options);
