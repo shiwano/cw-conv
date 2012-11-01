@@ -1,21 +1,21 @@
 define = require('amdefine')(module) if typeof window.define isnt 'function'
 
 define (require, exports, module) ->
-  utils           = require './utils'
-  {Area}          = require './area'
-  {Battle}        = require './battle'
-  {CharacterCard} = require './character_card'
-  {ItemCard}      = require './item_card'
-  {ItemCard}      = require './item_card'
-  {Package}       = require './package'
-  {InfoCard}      = require './info_card'
-  {SkillCard}     = require './skill_card'
-  {BeastCard}     = require './beast_card'
-  {Summary}       = require './summary'
+  exports.Area          = require('./area').Area
+  exports.Battle        = require('./battle').Battle
+  exports.CharacterCard = require('./character_card').CharacterCard
+  exports.ItemCard      = require('./item_card').ItemCard
+  exports.Package       = require('./package').Package
+  exports.InfoCard      = require('./info_card').InfoCard
+  exports.SkillCard     = require('./skill_card').SkillCard
+  exports.BeastCard     = require('./beast_card').BeastCard
+  exports.Summary       = require('./summary').Summary
+  utils                 = require './utils'
 
-  exports.convertToJSON = (buffer, filename) ->
+  exports.convert = (buffer, filename) ->
     type = utils.detectDataType buffer, filename
     upperCamelCasedType = utils.toUpperCamelCase type
-
+    data = new exports[upperCamelCasedType] null, buffer
+    data.parse()
 
   exports
