@@ -6,8 +6,8 @@ define (require, exports, module) ->
   class BeastCard extends Card
     parse: ->
       super
-      @data.usageLimit = @reader.readInt32()
-      @data.attachment = if @isInnData then @reader.readBoolean() else false
+      @data.usageLimit = @readInt32()
+      @data.attachment = if @isInnData then @readBoolean() else false
       @data
 
   exports.BeastCard = BeastCard

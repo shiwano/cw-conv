@@ -9,6 +9,13 @@ define (require, exports, module) ->
       @isInnData = parent?.isInnData or isInnData
       @data      = {}
 
+    seek: (offset)      -> @reader.seek offset
+    readString:         -> @reader.readString()
+    readInt8:           -> @reader.readInt8()
+    readInt32:          -> @reader.readInt32()
+    readBoolean:        -> @reader.readBoolean()
+    readImageAsDataURI: -> @reader.readImageAsDataURI()
+
     toJSON: ->
       JSON.stringify @data
 

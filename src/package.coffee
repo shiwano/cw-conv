@@ -7,10 +7,10 @@ define (require, exports, module) ->
   class Package extends Base
     parse: ->
       @data.type   = @convertScenarioDataType 7
-      @reader.seek 4 # skip the unknow data
-      @data.name   = @reader.readString()
-      @data.id     = @reader.readInt32()
-      eventsLength = @reader.readInt32()
+      @seek 4 # skip the unknow data
+      @data.name   = @readString()
+      @data.id     = @readInt32()
+      eventsLength = @readInt32()
       @data.events = (new SimpleEvent(@).parse() for i in [0...eventsLength])
       @data
 

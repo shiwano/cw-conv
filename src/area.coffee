@@ -7,33 +7,33 @@ define (require, exports, module) ->
 
   class Area extends Base
     parse: ->
-      @data.type        = @convertScenarioDataType @reader.readInt8()
-      @reader.seek 4 # skip the unknown data
-      @data.name            = @reader.readString()
-      @data.id              = @reader.readInt32() % 10000
-      eventsLength          = @reader.readInt32()
+      @data.type        = @convertScenarioDataType @readInt8()
+      @seek 4 # skip the unknown data
+      @data.name            = @readString()
+      @data.id              = @readInt32() % 10000
+      eventsLength          = @readInt32()
       @data.events          = (new Event(@).parse() for i in [0...eventsLength])
-      @data.cardArrangement = @convertCardArrangementType @reader.readInt8()
-      menuCardsLength       = @reader.readInt32()
+      @data.cardArrangement = @convertCardArrangementType @readInt8()
+      menuCardsLength       = @readInt32()
       @data.menuCards       = (new MenuCard(@).parse() for i in [0...menuCardsLength])
-      bgsLength             = @reader.readInt32()
+      bgsLength             = @readInt32()
       @data.backgrounds     = (new BackgroundImage(@).parse() for i in [0...bgsLength])
       @data
 
   class MenuCard extends Base
     parse: ->
-      @reader.seek 1 # skip the unknown data
-      @data.image       = @reader.readImageAsDataURI()
-      @data.name        = @reader.readString()
-      @reader.seek 4 # skip the unknown data
-      @data.description = @reader.readString()
-      eventsLength      = @reader.readInt32()
+      @seek 1 # skip the unknown data
+      @data.image       = @readImageAsDataURI()
+      @data.name        = @readString()
+      @seek 4 # skip the unknown data
+      @data.description = @readString()
+      eventsLength      = @readInt32()
       @data.events      = (new Event(@).parse() for i in [0...eventsLength])
-      @data.flag        = @reader.readString()
-      @data.scale       = @reader.readInt32()
-      @data.left        = @reader.readInt32()
-      @data.top         = @reader.readInt32()
-      imagePath         = @reader.readString()
+      @data.flag        = @readString()
+      @data.scale       = @readInt32()
+      @data.left        = @readInt32()
+      @data.top         = @readInt32()
+      imagePath         = @readString()
       @data.image       = imagePath unless @data.image
       @data
 

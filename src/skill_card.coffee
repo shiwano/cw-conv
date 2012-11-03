@@ -6,8 +6,8 @@ define (require, exports, module) ->
   class SkillCard extends Card
     parse: ->
       super
-      @data.level           = @reader.readInt32()
-      @data.usageLimit      = @reader.readInt32()
+      @data.level           = @readInt32()
+      @data.usageLimit      = @readInt32()
       @data
 
   exports.SkillCard = SkillCard

@@ -6,49 +6,49 @@ define (require, exports, module) ->
   class Summary extends Base
     parse: ->
       @data.type        = @convertScenarioDataType 8
-      @data.image        = @reader.readImageAsDataURI()
-      @data.title        = @reader.readString()
-      @data.description  = @reader.readString()
-      @data.author       = @reader.readString()
+      @data.image        = @readImageAsDataURI()
+      @data.title        = @readString()
+      @data.description  = @readString()
+      @data.author       = @readString()
       @data.prerequisite = new Prerequisite(@).parse()
-      sceneId            = @reader.readInt32()
+      sceneId            = @readInt32()
       @version           = ~~(sceneId / 10000)
       @data.startSceneId = sceneId % 10000
       @data.defnitions   = new Defnitions(@).parse()
-      @reader.seek 4 # skip a unknown data
+      @seek 4 # skip a unknown data
       @data.recommendedLevel =
-        min: @reader.readInt32()
-        max: @reader.readInt32()
+        min: @readInt32()
+        max: @readInt32()
       @data
 
   class Prerequisite extends Base
     parse: ->
-      achievements             = @reader.readString()
+      achievements             = @readString()
       @data.achievements       = if achievements then achievements.split('\n') else []
-      @data.achievementsNumber = @reader.readInt32()
+      @data.achievementsNumber = @readInt32()
       @data
 
   class Defnitions extends Base
     parse: ->
-      stepsListLength = @reader.readInt32()
+      stepsListLength = @readInt32()
       @data.stepsList = (new Steps(@).parse() for i in [0...stepsListLength])
-      flagsLength     = @reader.readInt32()
+      flagsLength     = @readInt32()
       @data.flags     = (new Flag(@).parse() for i in [0...flagsLength])
       @data
 
   class Flag extends Base
     parse: ->
-      @data.name             = @reader.readString()
-      @data.default          = @reader.readBoolean()
-      @data.valueNameOnTrue  = @reader.readString()
-      @data.valueNameOnFalse = @reader.readString()
+      @data.name             = @readString()
+      @data.default          = @readBoolean()
+      @data.valueNameOnTrue  = @readString()
+      @data.valueNameOnFalse = @readString()
       @data
 
   class Steps extends Base
     parse: ->
-      @data.name         = @reader.readString()
-      @data.default      = @reader.readInt32()
-      @data.valueNames   = (@reader.readString() for i in [0..9])
+      @data.name         = @readString()
+      @data.default      = @readInt32()
+      @data.valueNames   = (@readString() for i in [0..9])
       @data
 
   exports.Summary = Summary

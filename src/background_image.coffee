@@ -5,14 +5,14 @@ define (require, exports, module) ->
 
   class BackgroundImage extends Base
     parse: ->
-      @data.left   = @reader.readInt32()
-      @data.top    = @reader.readInt32()
-      @data.width  = @reader.readInt32() % 10000
-      @data.height = @reader.readInt32()
-      @data.image  = @reader.readString()
-      @data.mask   = @reader.readBoolean()
-      @data.flag   = @reader.readString()
-      @reader.seek 1 # skip
+      @data.left   = @readInt32()
+      @data.top    = @readInt32()
+      @data.width  = @readInt32() % 10000
+      @data.height = @readInt32()
+      @data.image  = @readString()
+      @data.mask   = @readBoolean()
+      @data.flag   = @readString()
+      @seek 1 # skip
       @data
 
   exports.BackgroundImage = BackgroundImage

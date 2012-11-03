@@ -5,11 +5,11 @@ define (require, exports, module) ->
 
   class InfoCard extends Base
     parse: ->
-      @data.type        = @convertScenarioDataType @reader.readInt8()
-      @data.image       = @reader.readImageAsDataURI()
-      @data.name        = @reader.readString()
-      @data.id          = @reader.readInt32() % 10000
-      @data.description = @reader.readString()
+      @data.type        = @convertScenarioDataType @readInt8()
+      @data.image       = @readImageAsDataURI()
+      @data.name        = @readString()
+      @data.id          = @readInt32() % 10000
+      @data.description = @readString()
       @data
 
   exports.InfoCard = InfoCard

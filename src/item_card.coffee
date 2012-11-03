@@ -6,12 +6,12 @@ define (require, exports, module) ->
   class ItemCard extends Card
     parse: ->
       super
-      @data.usageLimit            = @reader.readInt32()
-      @data.usageLimitMax         = @reader.readInt32()
-      @data.price                 = @reader.readInt32()
-      @data.evasionBonusAlways    = @reader.readInt32()
-      @data.resistanceBonusAlways = @reader.readInt32()
-      @data.defenseBonusAlways    = @reader.readInt32()
+      @data.usageLimit            = @readInt32()
+      @data.usageLimitMax         = @readInt32()
+      @data.price                 = @readInt32()
+      @data.evasionBonusAlways    = @readInt32()
+      @data.resistanceBonusAlways = @readInt32()
+      @data.defenseBonusAlways    = @readInt32()
       @data
 
   exports.ItemCard = ItemCard

@@ -6,18 +6,18 @@ define (require, exports, module) ->
 
   class Event extends Base
     parse: ->
-      childrenLength          = @reader.readInt32()
+      childrenLength          = @readInt32()
       @data.children          = (createEventContent(@).parse() for i in [0...childrenLength])
       @data.triggers          = {}
-      idsLength               = @reader.readInt32()
-      @data.triggers.ids      = (@reader.readInt32() for i in [0...idsLength])
-      keycodes                = @reader.readString()
+      idsLength               = @readInt32()
+      @data.triggers.ids      = (@readInt32() for i in [0...idsLength])
+      keycodes                = @readString()
       @data.triggers.keycodes = if keycodes then keycodes.split('\n') else []
       @data
 
   class SimpleEvent extends Base
     parse: ->
-      childrenLength          = @reader.readInt32()
+      childrenLength          = @readInt32()
       @data.children          = (createEventContent(@).parse() for i in [0...childrenLength])
       @data
 
