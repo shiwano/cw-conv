@@ -9,5 +9,7 @@ describe 'main', ->
     it 'should convert to JSON from old cardwird data', ->
       buffer = spec.readFixtureFile 'scenario/goblin_cave/Battle3.wid'
       result = main.convert buffer, 'Battle3.wid'
-      expected = (new Battle null, buffer).toJSON()
-      expect(result).to.be.equal expected
+      data = (new Battle null, buffer)
+      data.parse()
+      expected = data.toJSON()
+      expect(result).to.be.eql expected
