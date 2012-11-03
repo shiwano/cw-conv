@@ -30,10 +30,8 @@ define (require, exports, module) ->
 
   class Defnitions extends Base
     parse: ->
-      stepsListLength = @readInt32()
-      @data.stepsList = (new Steps(@).parse() for i in [0...stepsListLength])
-      flagsLength     = @readInt32()
-      @data.flags     = (new Flag(@).parse() for i in [0...flagsLength])
+      @data.stepsList = @readArray => new Steps(@).parse()
+      @data.flags     = @readArray => new Flag(@).parse()
       @data
 
   class Flag extends Base

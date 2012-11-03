@@ -21,8 +21,7 @@ define (require, exports, module) ->
       @data.reactionType     = @convertEffectReactionType @readInt8()
       @data.successRate      = @readInt32()
       @data.animationType    = @convertEffectAnimationType @readInt8()
-      effectsLength          = @readInt32()
-      @data.effects          = (new Effect(@).parse() for i in [0...effectsLength])
+      @data.effects          = @readArray => new Effect(@).parse()
       @data.evasionBonus     = @readInt32()
       @data.resistanceBonus  = @readInt32()
       @data.defenseBonus     = @readInt32()
@@ -33,8 +32,7 @@ define (require, exports, module) ->
       @data.rarity           = @convertCardRarityType @readInt8()
       @data.scenario         = @readString()
       @data.author           = @readString()
-      eventsLength           = @readInt32()
-      @data.events           = (new SimpleEvent(@).parse() for i in [0...eventsLength])
+      @data.events           = @readArray => new SimpleEvent(@).parse()
       @data.reserved         = @readBoolean()
       @seek 4 if @isInnData
       @data

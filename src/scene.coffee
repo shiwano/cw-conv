@@ -11,13 +11,10 @@ define (require, exports, module) ->
       @seek 4 # skip the unknown data
       @data.name            = @readString()
       @data.id              = @readInt32() % 10000
-      eventsLength          = @readInt32()
-      @data.events          = (new Event(@).parse() for i in [0...eventsLength])
+      @data.events          = @readArray => new Event(@).parse()
       @data.cardArrangement = @convertCardArrangementType @readInt8()
-      menuCardsLength       = @readInt32()
-      @data.menuCards       = (new MenuCard(@).parse() for i in [0...menuCardsLength])
-      bgsLength             = @readInt32()
-      @data.backgrounds     = (new BackgroundImage(@).parse() for i in [0...bgsLength])
+      @data.menuCards       = @readArray => new MenuCard(@).parse()
+      @data.backgrounds     = @readArray => new BackgroundImage(@).parse()
       @data
 
   class MenuCard extends Base
@@ -27,8 +24,7 @@ define (require, exports, module) ->
       @data.name        = @readString()
       @seek 4 # skip the unknown data
       @data.description = @readString()
-      eventsLength      = @readInt32()
-      @data.events      = (new Event(@).parse() for i in [0...eventsLength])
+      @data.events      = @readArray => new Event(@).parse()
       @data.flag        = @readString()
       @data.scale       = @readInt32()
       @data.left        = @readInt32()

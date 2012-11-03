@@ -16,6 +16,10 @@ define (require, exports, module) ->
     readBoolean:        -> @reader.readBoolean()
     readImageAsDataURI: -> @reader.readImageAsDataURI()
 
+    readArray: (iterator, length) ->
+      length = @readInt32() unless length?
+      ((do iterator) for i in [0...length])
+
     toJSON: ->
       JSON.stringify @data
 

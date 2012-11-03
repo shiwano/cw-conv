@@ -65,15 +65,10 @@ define (require, exports, module) ->
       @data.defenseBonus            = @readInt32()
       @data.defenseBonusCounter     = @readInt32()
 
-      itemLength = @readInt32()
-      @data.itemCards = (new ItemCard(@).parse() for i in [0...itemLength])
-      skillLength = @readInt32()
-      @data.skillCards = (new SkillCard(@).parse() for i in [0...skillLength])
-      beastLength = @readInt32()
-      @data.beastCards = (new BeastCard(@).parse() for i in [0...beastLength])
-
-      achievementLength = @readInt32()
-      @data.achievements = (new Achievement(@).parse() for i in [0...achievementLength])
+      @data.itemCards    = @readArray => new ItemCard(@).parse()
+      @data.skillCards   = @readArray => new SkillCard(@).parse()
+      @data.beastCards   = @readArray => new BeastCard(@).parse()
+      @data.achievements = @readArray => new Achievement(@).parse()
       @data
 
   class Achievement extends Base

@@ -10,19 +10,16 @@ define (require, exports, module) ->
       @seek 4 # skip the unknown data
       @data.name            = @readString()
       @data.id              = @readInt32() % 10000
-      eventsLength          = @readInt32()
-      @data.events          = (new Event(@).parse() for i in [0...eventsLength])
+      @data.events          = @readArray => new Event(@).parse()
       @data.cardArrangement = @convertCardArrangementType @readInt8()
-      enemyCardsLength      = @readInt32()
-      @data.enemyCards      = (new EnemyCard(@).parse() for i in [0...enemyCardsLength])
+      @data.enemyCards      = @readArray => new EnemyCard(@).parse()
       @data.music           = @readString()
       @data
 
   class EnemyCard extends Base
     parse: ->
       @data.characterId = @readInt32()
-      eventsLength      = @readInt32()
-      @data.events      = (new Event(@).parse() for i in [0...eventsLength])
+      @data.events      = @readArray => new Event(@).parse()
       @data.flag        = @readString()
       @data.scale       = @readInt32()
       @data.left        = @readInt32()

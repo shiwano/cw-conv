@@ -27,9 +27,8 @@ define (require, exports, module) ->
         # 技能(2), 消滅(6), カード(7)はパス
         # 召喚
         when 8
-          beastsLength = @readInt32()
           {BeastCard} = require './beast_card' # lazy require
-          @data.beastCards = (new BeastCard(@).parse() for i in [0...beastsLength])
+          @data.beastCards = @readArray => new BeastCard(@).parse()
 
       @data
 

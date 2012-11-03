@@ -10,8 +10,7 @@ define (require, exports, module) ->
       @seek 4 # skip the unknow data
       @data.name   = @readString()
       @data.id     = @readInt32()
-      eventsLength = @readInt32()
-      @data.events = (new SimpleEvent(@).parse() for i in [0...eventsLength])
+      @data.events = @readArray => new SimpleEvent(@).parse()
       @data
 
   exports.Package = Package

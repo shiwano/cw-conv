@@ -6,19 +6,16 @@ define (require, exports, module) ->
 
   class Event extends Base
     parse: ->
-      childrenLength          = @readInt32()
-      @data.children          = (createEventElement(@).parse() for i in [0...childrenLength])
+      @data.children          = @readArray => createEventElement(@).parse()
       @data.triggers          = {}
-      idsLength               = @readInt32()
-      @data.triggers.ids      = (@readInt32() for i in [0...idsLength])
+      @data.triggers.ids      = @readArray => @readInt32()
       keycodes                = @readString()
       @data.triggers.keycodes = if keycodes then keycodes.split('\n') else []
       @data
 
   class SimpleEvent extends Base
     parse: ->
-      childrenLength          = @readInt32()
-      @data.children          = (createEventElement(@).parse() for i in [0...childrenLength])
+      @data.children          = @readArray => createEventElement(@).parse()
       @data
 
   exports.SimpleEvent = SimpleEvent

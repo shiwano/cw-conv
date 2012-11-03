@@ -10,8 +10,7 @@ define (require, exports, module) ->
     parse: ->
       @data.type     = @convertEventElementType @readInt8()
       @data.label    = @readString()
-      length         = @readInt32() % 10000
-      @data.children = (createEventElement(@).parse() for i in [0...length])
+      @data.children = @readArray (=> createEventElement(@).parse()), @readInt32() % 10000
       @seek 4 if @isInnData
       @data
 
@@ -59,8 +58,7 @@ define (require, exports, module) ->
   class EventElement.Background extends EventElementBase
     parse: ->
       super
-      length = @readInt32()
-      @data.backgrounds = (new BackgroundImage(@).parse() for i in [0...length])
+      @data.backgrounds = @readArray => new BackgroundImage(@).parse()
       @data
 
   class EventElement.Sound extends EventElementBase
@@ -77,11 +75,10 @@ define (require, exports, module) ->
 
   class EventElement.Effect extends EventElementBase
     parse: ->
-      {Effect}       = require './effect'
+      {Effect}       = require './effect' # lazy require
       @data.type     = @convertEventElementType @readInt8()
       @data.label    = @readString()
-      length         = @readInt32() % 10000
-      @data.children = (createEventElement(@).parse() for i in [0...length])
+      @data.children = @readArray (=> createEventElement(@).parse()), @readInt32() % 10000
       @seek 4 if @isInnData
       @data.level          = @readInt32()
       @data.target         = @convertTargetType @readInt8(), true
@@ -90,8 +87,7 @@ define (require, exports, module) ->
       @data.successRate    = @readInt32()
       @data.sound          = @readString()
       @data.animationType  = @convertEffectAnimationType @readInt8()
-      length               = @readInt32()
-      @data.effects        = (new Effect(@).parse() for i in [0...length])
+      @data.effects        = @readArray => new Effect(@).parse()
       @data
 
   class EventElement.BranchByMemberSelect extends EventElementBase
@@ -296,8 +292,7 @@ define (require, exports, module) ->
     parse: ->
       super
       @data.target = @convertTargetType @readInt8()
-      length = @readInt32()
-      @data.messages = (@readMessage() for i in [0...length])
+      @data.messages = @readArray => @readMessage()
       @data
 
     readMessage: ->
