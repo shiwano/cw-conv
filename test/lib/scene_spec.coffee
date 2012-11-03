@@ -1,20 +1,20 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
 
-{Area} = spec.require 'area.coffee'
+{Scene} = spec.require 'scene.coffee'
 spec.registerSchema 'scene'
 
-describe 'Area', ->
+describe 'Scene', ->
   describe '#parse', ->
-    it 'should return the area data', ->
+    it 'should return the scene data', ->
       buffer = spec.readFixtureFile 'scenario/goblin_cave/Area1.wid'
-      data = (new Area null, buffer).parse()
+      data = (new Scene null, buffer).parse()
       expect(spec.validateJSON data, 'scene').to.be.true
 
 describe 'MenuCard', ->
   describe '#parse', ->
     it 'should return the menuCard data', ->
       buffer = spec.readFixtureFile 'scenario/goblin_cave/Area3.wid'
-      areaData = (new Area null, buffer).parse()
-      data = areaData.menuCards[0]
+      sceneData = (new Scene null, buffer).parse()
+      data = sceneData.menuCards[0]
       expect(spec.validateJSON data, 'scene#menu_card').to.be.true

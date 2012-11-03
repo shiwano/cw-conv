@@ -1,7 +1,7 @@
 define = require('amdefine')(module) if typeof window.define isnt 'function'
 
 define (require, exports, module) ->
-  exports.Area          = require('./area').Area
+  exports.Scene          = require('./scene').Scene
   exports.Battle        = require('./battle').Battle
   exports.CharacterCard = require('./character_card').CharacterCard
   exports.ItemCard      = require('./item_card').ItemCard

@@ -1,14 +1,14 @@
 spec = require '../spec_helper'
 {expect} = require 'chai'
 
-{Area} = spec.require "area.coffee"
+{Scene} = spec.require "scene.coffee"
 spec.registerSchema 'background'
 
 describe 'BackgroundImage', ->
   describe '#parse', ->
-    it 'should return the area data', ->
+    it 'should return the scene data', ->
       buffer = spec.readFixtureFile 'scenario/goblin_cave/Area1.wid'
-      area = new Area null, buffer
-      areaData = area.parse()
-      data = areaData.backgrounds[0]
+      scene = new Scene null, buffer
+      sceneData = scene.parse()
+      data = sceneData.backgrounds[0]
       expect(spec.validateJSON data, 'background').to.be.true

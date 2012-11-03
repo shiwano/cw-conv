@@ -5,7 +5,7 @@ define (require, exports, module) ->
   {Event} = require './event'
   {BackgroundImage} = require './background_image'
 
-  class Area extends Base
+  class Scene extends Base
     parse: ->
       @data.type        = @convertScenarioDataType @readInt8()
       @seek 4 # skip the unknown data
@@ -37,5 +37,5 @@ define (require, exports, module) ->
       @data.image       = imagePath unless @data.image
       @data
 
-  exports.Area = Area
+  exports.Scene = Scene
   exports
