@@ -40,7 +40,7 @@ define (require, exports, module) ->
 # イベントコンテント
 #-------------------------------------------------------------------------------
 
-    convertEventContentType: (i) ->
+    convertEventElementType: (i) ->
       switch i
         when 0  then 'start'                  # スタート
         when 1  then 'startLink'              # スタートへのリンク
@@ -108,16 +108,16 @@ define (require, exports, module) ->
         when 63 then 'branchByBattleNow'      # バトル判定分岐
         when 64 then 'backgroundRebuild'      # 画面の再構築
         when 65 then 'flagCheck'              # フラグ判定
-        else throw Error "Unknown event content type: #{i}"
+        else throw Error "Unknown event element type: #{i}"
 
 #-------------------------------------------------------------------------------
 # 適用メンバ・適用範囲
 #-------------------------------------------------------------------------------
 
-    convertTargetType: (i, isEffectContent = false) ->
+    convertTargetType: (i, isEffectElement = false) ->
       # 効果コンテントの適用メンバには"選択中以外のメンバ"は存在しない。
       # 代わりに"パーティ全体"となる。
-      i = 6 if isEffectContent and i is 2
+      i = 6 if isEffectElement and i is 2
 
       switch i
         when 0 then 'selected'            # 現在選択中のメンバ

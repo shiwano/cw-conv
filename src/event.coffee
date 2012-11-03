@@ -2,12 +2,12 @@ define = require('amdefine')(module) if typeof window.define isnt 'function'
 
 define (require, exports, module) ->
   {Base} = require './base'
-  {createEventContent} = require './event_content'
+  {createEventElement} = require './event_element'
 
   class Event extends Base
     parse: ->
       childrenLength          = @readInt32()
-      @data.children          = (createEventContent(@).parse() for i in [0...childrenLength])
+      @data.children          = (createEventElement(@).parse() for i in [0...childrenLength])
       @data.triggers          = {}
       idsLength               = @readInt32()
       @data.triggers.ids      = (@readInt32() for i in [0...idsLength])
@@ -18,7 +18,7 @@ define (require, exports, module) ->
   class SimpleEvent extends Base
     parse: ->
       childrenLength          = @readInt32()
-      @data.children          = (createEventContent(@).parse() for i in [0...childrenLength])
+      @data.children          = (createEventElement(@).parse() for i in [0...childrenLength])
       @data
 
   exports.SimpleEvent = SimpleEvent

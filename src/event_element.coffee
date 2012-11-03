@@ -4,84 +4,84 @@ define (require, exports, module) ->
   utils = require './utils'
   {Base} = require './base'
   {BackgroundImage} = require './background_image'
-  EventContent = {}
+  EventElement = {}
 
-  class EventContentBase extends Base
+  class EventElementBase extends Base
     parse: ->
-      @data.type     = @convertEventContentType @readInt8()
+      @data.type     = @convertEventElementType @readInt8()
       @data.label    = @readString()
       length         = @readInt32() % 10000
-      @data.children = (createEventContent(@).parse() for i in [0...length])
+      @data.children = (createEventElement(@).parse() for i in [0...length])
       @seek 4 if @isInnData
       @data
 
-  class EventContent.Start extends EventContentBase
+  class EventElement.Start extends EventElementBase
 
-  class EventContent.StartLink extends EventContentBase
+  class EventElement.StartLink extends EventElementBase
     parse: ->
       super
       @data.startLabel = @readString()
       @data
 
-  class EventContent.Battle extends EventContentBase
+  class EventElement.Battle extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.ScenarioEnd extends EventContentBase
+  class EventElement.ScenarioEnd extends EventElementBase
     parse: ->
       super
       @data.completed = @readBoolean()
       @data
 
-  class EventContent.GameOver extends EventContentBase
+  class EventElement.GameOver extends EventElementBase
 
-  class EventContent.Scene extends EventContentBase
+  class EventElement.Scene extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.Message extends EventContentBase
+  class EventElement.Message extends EventElementBase
     parse: ->
       super
       @data.image = @readString()
       @data.message = @readString()
       @data
 
-  class EventContent.Music extends EventContentBase
+  class EventElement.Music extends EventElementBase
     parse: ->
       super
       @data.music = @readString()
       @data
 
-  class EventContent.Background extends EventContentBase
+  class EventElement.Background extends EventElementBase
     parse: ->
       super
       length = @readInt32()
       @data.backgrounds = (new BackgroundImage(@).parse() for i in [0...length])
       @data
 
-  class EventContent.Sound extends EventContentBase
+  class EventElement.Sound extends EventElementBase
     parse: ->
       super
       @data.sound = @readString()
       @data
 
-  class EventContent.Wait extends EventContentBase
+  class EventElement.Wait extends EventElementBase
     parse: ->
       super
       @data.duration = @readInt32()
       @data
 
-  class EventContent.Effect extends EventContentBase
+  class EventElement.Effect extends EventElementBase
     parse: ->
       {Effect}       = require './effect'
-      @data.type     = @convertEventContentType @readInt8()
+      @data.type     = @convertEventElementType @readInt8()
       @data.label    = @readString()
       length         = @readInt32() % 10000
-      @data.children = (createEventContent(@).parse() for i in [0...length])
+      @data.children = (createEventElement(@).parse() for i in [0...length])
       @seek 4 if @isInnData
       @data.level          = @readInt32()
       @data.target         = @convertTargetType @readInt8(), true
@@ -94,14 +94,14 @@ define (require, exports, module) ->
       @data.effects        = (new Effect(@).parse() for i in [0...length])
       @data
 
-  class EventContent.BranchByMemberSelect extends EventContentBase
+  class EventElement.BranchByMemberSelect extends EventElementBase
     parse: ->
       super
       @data.targetAll = @readBoolean()
       @data.random = @readBoolean()
       @data
 
-  class EventContent.BranchByAbility extends EventContentBase
+  class EventElement.BranchByAbility extends EventElementBase
     parse: ->
       super
       @data.value = @readInt32()
@@ -110,53 +110,45 @@ define (require, exports, module) ->
       @data.mentalAptitude = @convertMentalAptitudeType @readInt32()
       @data
 
-  class EventContent.BranchByRandom extends EventContentBase
+  class EventElement.BranchByRandom extends EventElementBase
     parse: ->
       super
       @data.probability= @readInt32()
       @data
 
-  class EventContent.BranchByFlag extends EventContentBase
+  class EventElement.BranchByFlag extends EventElementBase
     parse: ->
       super
       @data.flagName = @readString()
       @data
 
-  class EventContent.Flag extends EventContentBase
+  class EventElement.Flag extends EventElementBase
     parse: ->
       super
       @data.flagName = @readString()
       @data.flag = @readBoolean()
       @data
 
-  class EventContent.BranchBySteps extends EventContentBase
+  class EventElement.BranchBySteps extends EventElementBase
     parse: ->
       super
       @data.stepsName = @readString()
       @data
 
-  class EventContent.Steps extends EventContentBase
+  class EventElement.Steps extends EventElementBase
     parse: ->
       super
       @data.stepsName = @readString()
       @data.step = @readInt32()
       @data
 
-  class EventContent.BranchByFriend extends EventContentBase
+  class EventElement.BranchByFriend extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.BranchByItem extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data.number = @readInt32()
-      @data.targetScope = @convertTargetScopeType @readInt8()
-      @data
-
-  class EventContent.BranchBySkill extends EventContentBase
+  class EventElement.BranchByItem extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -164,13 +156,7 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.BranchByInformation extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data
-
-  class EventContent.BranchByBeast extends EventContentBase
+  class EventElement.BranchBySkill extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -178,13 +164,27 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.BranchByMoney extends EventContentBase
+  class EventElement.BranchByInformation extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data
+
+  class EventElement.BranchByBeast extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data.number = @readInt32()
+      @data.targetScope = @convertTargetScopeType @readInt8()
+      @data
+
+  class EventElement.BranchByMoney extends EventElementBase
     parse: ->
       super
       @data.money = @readInt32()
       @data
 
-  class EventContent.BranchByAchievement extends EventContentBase
+  class EventElement.BranchByAchievement extends EventElementBase
     parse: ->
       super
       @data.achievement = @readString()
@@ -192,21 +192,13 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.Friend extends EventContentBase
+  class EventElement.Friend extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.Item extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data.number = @readInt32()
-      @data.targetScope = @convertTargetScopeType @readInt8()
-      @data
-
-  class EventContent.Skill extends EventContentBase
+  class EventElement.Item extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -214,13 +206,7 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.Information extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data
-
-  class EventContent.Beast extends EventContentBase
+  class EventElement.Skill extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -228,13 +214,27 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.Money extends EventContentBase
+  class EventElement.Information extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data
+
+  class EventElement.Beast extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data.number = @readInt32()
+      @data.targetScope = @convertTargetScopeType @readInt8()
+      @data
+
+  class EventElement.Money extends EventElementBase
     parse: ->
       super
       @data.money = @readInt32()
       @data
 
-  class EventContent.Achievement extends EventContentBase
+  class EventElement.Achievement extends EventElementBase
     parse: ->
       super
       @data.achievement = @readString()
@@ -242,21 +242,13 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.FriendLoss extends EventContentBase
+  class EventElement.FriendLoss extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.ItemLoss extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data.number = @readInt32()
-      @data.targetScope = @convertTargetScopeType @readInt8()
-      @data
-
-  class EventContent.SkillLoss extends EventContentBase
+  class EventElement.ItemLoss extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -264,13 +256,7 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.InformationLoss extends EventContentBase
-    parse: ->
-      super
-      @data.ref = @readInt32()
-      @data
-
-  class EventContent.BeastLoss extends EventContentBase
+  class EventElement.SkillLoss extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
@@ -278,13 +264,27 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.MoneyLoss extends EventContentBase
+  class EventElement.InformationLoss extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data
+
+  class EventElement.BeastLoss extends EventElementBase
+    parse: ->
+      super
+      @data.ref = @readInt32()
+      @data.number = @readInt32()
+      @data.targetScope = @convertTargetScopeType @readInt8()
+      @data
+
+  class EventElement.MoneyLoss extends EventElementBase
     parse: ->
       super
       @data.money = @readInt32()
       @data
 
-  class EventContent.AchievementLoss extends EventContentBase
+  class EventElement.AchievementLoss extends EventElementBase
     parse: ->
       super
       @data.achievement = @readString()
@@ -292,7 +292,7 @@ define (require, exports, module) ->
       @data.targetScope = @convertTargetScopeType @readInt8()
       @data
 
-  class EventContent.CharacterMessage extends EventContentBase
+  class EventElement.CharacterMessage extends EventElementBase
     parse: ->
       super
       @data.target = @convertTargetType @readInt8()
@@ -307,133 +307,133 @@ define (require, exports, module) ->
         message: @readString()
       }
 
-  class EventContent.StepUp extends EventContentBase
+  class EventElement.StepUp extends EventElementBase
     parse: ->
       super
       @data.stepsName = @readString()
       @data
 
-  class EventContent.StepDown extends EventContentBase
+  class EventElement.StepDown extends EventElementBase
     parse: ->
       super
       @data.stepsName = @readString()
       @data
 
-  class EventContent.FlagReverse extends EventContentBase
+  class EventElement.FlagReverse extends EventElementBase
     parse: ->
       super
       @data.flagName = @readString()
       @data
 
-  class EventContent.BranchByCurrentStep extends EventContentBase
+  class EventElement.BranchByCurrentStep extends EventElementBase
     parse: ->
       super
       @data.stepsName = @readString()
       @data.step = @readInt32()
       @data
 
-  class EventContent.TimePassage extends EventContentBase
+  class EventElement.TimePassage extends EventElementBase
 
-  class EventContent.BranchByLevel extends EventContentBase
+  class EventElement.BranchByLevel extends EventElementBase
     parse: ->
       super
       @data.useAverage = @readBoolean()
       @data.level = @readInt32()
       @data
 
-  class EventContent.BranchByCharacterState extends EventContentBase
+  class EventElement.BranchByCharacterState extends EventElementBase
     parse: ->
       super
       @data.characterState = @convertCharacterStateType @readInt8()
       @data.target = @convertTargetType @readInt8()
       @data
 
-  class EventContent.BranchByPartyNumber extends EventContentBase
+  class EventElement.BranchByPartyNumber extends EventElementBase
     parse: ->
       super
       @data.number = @readInt32()
       @data
 
-  class EventContent.PartyShow extends EventContentBase
+  class EventElement.PartyShow extends EventElementBase
 
-  class EventContent.PartyHide extends EventContentBase
+  class EventElement.PartyHide extends EventElementBase
 
-  class EventContent.EffectBreak extends EventContentBase
+  class EventElement.EffectBreak extends EventElementBase
 
-  class EventContent.StartCall extends EventContentBase
+  class EventElement.StartCall extends EventElementBase
     parse: ->
       super
       @data.startLabel = @readString()
       @data
 
-  class EventContent.PackageLink extends EventContentBase
+  class EventElement.PackageLink extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.PackageCall extends EventContentBase
+  class EventElement.PackageCall extends EventElementBase
     parse: ->
       super
       @data.ref = @readInt32()
       @data
 
-  class EventContent.BranchByScene extends EventContentBase
+  class EventElement.BranchByScene extends EventElementBase
 
-  class EventContent.BranchByBattle extends EventContentBase
+  class EventElement.BranchByBattle extends EventElementBase
 
-  class EventContent.BranchByCompletedStamp extends EventContentBase
+  class EventElement.BranchByCompletedStamp extends EventElementBase
     parse: ->
       super
       @data.completedStamp = @readString()
       @data
 
-  class EventContent.CompletedStamp extends EventContentBase
+  class EventElement.CompletedStamp extends EventElementBase
     parse: ->
       super
       @data.completedStamp = @readString()
       @data
 
-  class EventContent.CompletedStampLoss extends EventContentBase
+  class EventElement.CompletedStampLoss extends EventElementBase
     parse: ->
       super
       @data.completedStamp = @readString()
       @data
 
-  class EventContent.BranchByGossip extends EventContentBase
+  class EventElement.BranchByGossip extends EventElementBase
     parse: ->
       super
       @data.gossip = @readString()
       @data
 
-  class EventContent.Gossip extends EventContentBase
+  class EventElement.Gossip extends EventElementBase
     parse: ->
       super
       @data.gossip = @readString()
       @data
 
-  class EventContent.GossipLoss extends EventContentBase
+  class EventElement.GossipLoss extends EventElementBase
     parse: ->
       super
       @data.gossip = @readString()
       @data
 
-  class EventContent.BranchByBattleNow extends EventContentBase
+  class EventElement.BranchByBattleNow extends EventElementBase
 
-  class EventContent.BackgroundRebuild extends EventContentBase
+  class EventElement.BackgroundRebuild extends EventElementBase
 
-  class EventContent.FlagCheck extends EventContentBase
+  class EventElement.FlagCheck extends EventElementBase
     parse: ->
       super
       @data.flagName = @readString()
       @data
 
-  createEventContent = (parent) ->
-    type = parent.convertEventContentType parent.reader.readInt8()
+  createEventElement = (parent) ->
+    type = parent.convertEventElementType parent.reader.readInt8()
     parent.reader.seek -1
     upperCamelCasedType = utils.toUpperCamelCase type
-    content = new EventContent[upperCamelCasedType](parent)
-    content
+    element = new EventElement[upperCamelCasedType](parent)
+    element
 
-  exports.createEventContent = createEventContent
+  exports.createEventElement = createEventElement
   exports
