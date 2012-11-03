@@ -1,10 +1,10 @@
 define = require('amdefine')(module) if typeof window.define isnt 'function'
 
 define (require, exports, module) ->
-  {ItemCard} = require './item_card'
+  {ItemCard}  = require './item_card'
   {SkillCard} = require './skill_card'
   {BeastCard} = require './beast_card'
-  {Base} = require './base'
+  {Base}      = require './base'
 
   class CharacterCard extends Base
     parse: ->
@@ -24,17 +24,17 @@ define (require, exports, module) ->
       @data.fireWeakness = @readBoolean()
       @data.iceWeakness  = @readBoolean()
 
-      @data.level = @readInt32()
-      @data.money = @readInt32()
-      @data.description = @readString()
-      @data.life = @readInt32()
-      @data.maxLife = @readInt32()
+      @data.level            = @readInt32()
+      @data.money            = @readInt32()
+      @data.description      = @readString()
+      @data.life             = @readInt32()
+      @data.maxLife          = @readInt32()
       @data.paralysisCounter = @readInt32()
-      @data.poisonCounter = @readInt32()
+      @data.poisonCounter    = @readInt32()
 
-      @data.evasion = @readInt32()
+      @data.evasion    = @readInt32()
       @data.resistance = @readInt32()
-      @data.defense = @readInt32()
+      @data.defense    = @readInt32()
 
       @data.dex = @readInt32()
       @data.agl = @readInt32()
@@ -44,16 +44,16 @@ define (require, exports, module) ->
       @data.min = @readInt32()
 
       @data.aggressiveness = @readInt32()
-      @data.cheerfulness = @readInt32()
-      @data.braveness = @readInt32()
-      @data.carefulness = @readInt32()
-      @data.craftiness = @readInt32()
+      @data.cheerfulness   = @readInt32()
+      @data.braveness      = @readInt32()
+      @data.carefulness    = @readInt32()
+      @data.craftiness     = @readInt32()
 
-      @data.mentality = @convertCharacterMentalityType @readInt8()
-      @data.mentalityCounter = @readInt32()
-      @data.bindCounter = @readInt32()
-      @data.silenceCounter = @readInt32()
-      @data.revealCounter = @readInt32()
+      @data.mentality         = @convertCharacterMentalityType @readInt8()
+      @data.mentalityCounter  = @readInt32()
+      @data.bindCounter       = @readInt32()
+      @data.silenceCounter    = @readInt32()
+      @data.revealCounter     = @readInt32()
       @data.magicproofCounter = @readInt32()
 
       @data.actionLevelBonus        = @readInt32()
