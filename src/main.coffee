@@ -16,6 +16,6 @@ define (require, exports, module) ->
     type = utils.detectDataType buffer, filename
     upperCamelCasedType = utils.toUpperCamelCase type
     data = new exports[upperCamelCasedType] null, buffer
-    data.parse()
+    data.toJSON()
 
   exports
