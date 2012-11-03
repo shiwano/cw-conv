@@ -16,13 +16,13 @@ define (require, exports, module) ->
         # 生命力, 肉体
         when 0, 1
           @data.damageType = @convertEffectDamageType @readInt8()
-          @data.value - @readInt32()
+          @data.value = @readInt32()
         # 精神, 魔法
         when 3, 4
           @data.duration = @readInt32()
         # 能力
         when 5
-          @data.value - @readInt32()
+          @data.value = @readInt32()
           @data.duration = @readInt32()
         # 技能(2), 消滅(6), カード(7)はパス
         # 召喚
