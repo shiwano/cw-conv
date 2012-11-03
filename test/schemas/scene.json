@@ -31,7 +31,7 @@
       "type": "array",
       "required": true,
       "items": {
-        "$ref": "http://schema.cardwirth.org/background"
+        "$ref": "http://schema.cardwirth.org/background_image"
       }
     },
 

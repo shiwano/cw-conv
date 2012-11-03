@@ -36,7 +36,7 @@ exports.registerSchema = ->
     jsv.createSchema schemaData
 
 exports.registerSchema 'utils', 'simple_event', 'event', 'event_element',
-  'effect', 'background', 'card', 'beast_card'
+  'effect', 'background_image', 'card', 'beast_card'
 
 exports.validateJSON = (data, schemaName) ->
   schema = findSchema schemaName
