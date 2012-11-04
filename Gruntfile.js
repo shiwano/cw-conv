@@ -6,7 +6,7 @@ module.exports = function(grunt) {
     pkg: '<json:package.json>',
     connect: {
       port: 8000,
-      base: './build/'
+      base: './public'
     },
     test: {
       lib: {
