@@ -63,4 +63,4 @@ module.exports = (grunt) ->
   # tasks
   grunt.loadTasks 'tasks'
   grunt.loadNpmTasks 'grunt-contrib-connect'
-  grunt.registerTask 'default', 'coffee test'
+  grunt.registerTask 'default', 'coffee test build'

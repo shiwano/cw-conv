@@ -4,7 +4,7 @@ define (require, exports, module) ->
 
   exports.toBase64 = (buffer) ->
     string = String.fromCharCode.apply null, new Uint8Array(buffer)
-    window.btoa string
+    btoa string
 
   exports.detectDataType = (buffer, filename) ->
     return 'summary' if filename is 'Summary.wsm'

@@ -19,6 +19,8 @@ define (require, exports, module) ->
     data.parse()
     data.toJSON()
 
-  window.Cw = window.Cw or {}
-  window.Cw.ScenarioConverter = exports
+  if window?
+    window.Cw ?= {}
+    window.Cw.ScenarioConverter = exports
+
   exports
