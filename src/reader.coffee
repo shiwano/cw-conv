@@ -18,8 +18,8 @@ define (require, exports, module) ->
       return '' unless length > 0
       buffer = @buffer.slice(@position, @position + length - 1) # ignore a byte of the end
       @seek length
-      unicodeArray = encoding.Encoding.convert buffer, 'UNICODE', 'SJIS'
-      string = encoding.Encoding.codeToString unicodeArray
+      uint8array = new Uint8Array buffer
+      string = encoding.TextDecoder('shift_jis').decode(uint8array)
       string.replace /\r/g, ''
 
     readInt8: ->
