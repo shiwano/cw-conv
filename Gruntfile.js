@@ -4,6 +4,10 @@ module.exports = function(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: '<json:package.json>',
+    connect: {
+      port: 8000,
+      base: './build/'
+    },
     test: {
       lib: {
         files: 'test/lib/**/*.coffee'
@@ -68,5 +72,6 @@ module.exports = function(grunt) {
 
   // tasks
   grunt.loadTasks('tasks');
+  grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.registerTask('default', 'coffee test');
 };

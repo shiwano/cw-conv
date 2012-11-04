@@ -30,6 +30,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.0a",
+    "grunt-contrib-connect": "git://github.com/gruntjs/grunt-contrib-connect.git",
     "mocha": "latest",
     "async": "latest",
     "chai": "latest",
