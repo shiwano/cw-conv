@@ -23,7 +23,11 @@ module.exports = function(grunt) {
       requirejs: {
         baseUrl: 'lib',
         name: 'main',
-        out: 'build/cw-conv.js'
+        wrap: {
+          start: "(function(define) {",
+          end: "})(define);"
+        },
+        out: 'build/main.js'
       }
     },
     yagura: {
