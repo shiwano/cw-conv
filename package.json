@@ -23,24 +23,23 @@
   ],
   "main": "lib/cw-conv",
   "engines": {
-    "node": ">= 0.6.0"
+    "node": ">= 0.8.0"
   },
   "scripts": {
     "test": "grunt test"
   },
   "devDependencies": {
-    "grunt": "~0.4.0a",
+    "grunt": ">= 0.4.0a",
     "grunt-contrib-connect": "git://github.com/gruntjs/grunt-contrib-connect.git",
-    "mocha": "latest",
-    "async": "latest",
-    "chai": "latest",
-    "sinon": "latest",
-    "coffee-script": "latest",
-    "requirejs": "latest",
-    "amdefine": "latest",
-    "buffertools": "latest",
-    "JSV": "latest",
-    "underscore": "latest"
+    "mocha": ">= 1.6.0",
+    "async": ">= 0.1.22",
+    "chai": ">= 1.3.0",
+    "coffee-script": ">= 1.4.0",
+    "requirejs": ">= 2.1.1",
+    "amdefine": ">= 0.0.4",
+    "buffertools": ">= 1.1.0",
+    "JSV": ">= 4.0.2",
+    "underscore": ">= 1.4.2"
   },
   "keywords": []
 }
