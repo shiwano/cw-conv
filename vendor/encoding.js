@@ -6,8 +6,7 @@ if (typeof define !== 'function') {
 
 define(function(require, exports, module) {
   /** @type {Object.<string, (Array.<number>|Array.<Array.<number>>)>} */
-  var indexes;
-  indexes = require('./encoding-indexes');
+  var indexes = require('./encoding-indexes');
 
   (function(global) {
     'use strict';
