@@ -60,6 +60,9 @@ module.exports = function(grunt) {
       tasks: 'yagura'
     },
     options: {
+      coffee: {
+        bare: true
+      },
       mocha: {
         'growl': true,
         'compilers': 'coffee:coffee-script',
