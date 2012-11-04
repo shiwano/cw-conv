@@ -1,7 +1,7 @@
 define = require('amdefine')(module) if typeof define isnt 'function'
 
 define (require, exports, module) ->
-  exports.Scene          = require('./scene').Scene
+  exports.Scene         = require('./scene').Scene
   exports.Battle        = require('./battle').Battle
   exports.CharacterCard = require('./character_card').CharacterCard
   exports.ItemCard      = require('./item_card').ItemCard
@@ -19,4 +19,6 @@ define (require, exports, module) ->
     data.parse()
     data.toJSON()
 
+  window.Cw = window.Cw or {}
+  window.Cw.ScenarioConverter = exports
   exports

@@ -9,13 +9,13 @@
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet" />
     <script src="//cdnjs.cloudflare.com/ajax/libs/modernizr/2.6.2/modernizr.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/require.js/2.1.1/require.min.js" data-main="lib/main.js"></script>
     <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
     <script>
       $(function () {
         $("#select-file").on("change", onChangeFile);
-        $(window).on("dragover", onCancel);
-        $(window).on("dragenter", onCancel);
+        $(window).on("dragover", function (e) {e.preventDefault();});
+        $(window).on("dragenter", function (e) {e.preventDefault();});
         $(window).on("drop", onDropFile);
       });
 
@@ -31,21 +31,26 @@
         readFile(file);
       };
 
-      var onCancel = function (e) {
-        e.preventDefault();
-      };
-
       var readFile = function (file) {
         $("#file-name").text(file.name);
         $("#file-size").text(file.size + ' bytes');
-        $("#file-type").text(file.type || 'Unknown');
+
+        var reader = new FileReader();
+        $(reader).on('load', function (e) {
+          var buffer = e.target.result;
+          var json = Cw.ScenarioConverter.convert(buffer, file.name);
+          var data = JSON.parse(json);
+          $("#file-type").text(data.type);
+          var formedJson = JSON.stringify(data, null, 2);
+          $("#file-converted-data").attr('value', formedJson);
+        });
+        reader.readAsArrayBuffer(file);
 
         var reader = new FileReader();
         $(reader).on('load', function (e) {
           $("#file-raw-data").attr('value', e.target.result);
         });
-
-        reader.readAsArrayBuffer(file);
+        reader.readAsText(file, 'shift-jis');
       };
     </script>
     <style>
@@ -71,9 +76,13 @@
         <dd id="file-size">????</dd>
         <dt>Type</dt>
         <dd id="file-type">????</dd>
-        <dt>Raw data</dt>
+        <dt>Raw data (decoded from Shift-JIS)</dt>
         <dd>
           <textarea id="file-raw-data" class="input-block-level" rows="10"></textarea>
+        </dd>
+        <dt>Converted data</dt>
+        <dd>
+          <textarea id="file-converted-data" class="input-block-level" rows="10"></textarea>
         </dd>
         <dt>File Selecting</dt>
         <dd class="input-append">
