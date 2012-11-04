@@ -6,8 +6,7 @@ module.exports = function(grunt) {
     pkg: '<json:package.json>',
     test: {
       lib: {
-        files: ['test/lib/**/*.coffee'],
-        noCachedFiles: ['test/spec_helper.coffee']
+        files: 'test/lib/**/*.coffee'
       }
     },
     coffee: {
@@ -25,7 +24,7 @@ module.exports = function(grunt) {
     },
     yagura: {
       coffee: {
-        files: ['src/**/*.coffee'],
+        files: 'src/**/*.coffee',
         noCachedFiles: ['test/spec_helper.coffee'],
         changed: function (filepath, done) {
           destpath = filepath.replace('src', 'lib').replace(/\.coffee$/, '.js');
@@ -45,7 +44,7 @@ module.exports = function(grunt) {
         }
       },
       test: {
-        files: ['test/lib/**/*.coffee'],
+        files: 'test/lib/**/*.coffee',
         noCachedFiles: ['test/spec_helper.coffee'],
         changed: function (filepath, done) {
           grunt.helper('test', [filepath], done);
