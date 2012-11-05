@@ -11,21 +11,22 @@ module.exports = (grunt) ->
     grunt.file.clearRequireCache filepaths
     grunt.file.expandFiles(path.join(dest, '/**/*.js')).forEach (filepath) ->
       srcpath = filepath.replace(dest, src).replace(/\.js$/, '.coffee')
-      grunt.helper 'coffee-delete', filepath unless fs.existsSync(srcpath)
+      unless fs.existsSync(srcpath)
+        grunt.config.get('helper.coffee.delete')(filepath)
 
     filepaths.forEach (filepath) ->
       destpath = filepath.replace(src, dest).replace(/\.coffee$/, '.js')
-      grunt.helper 'coffee', filepath, destpath
+      grunt.config.get('helper.coffee.compile')(filepath, destpath)
 
     return false if grunt.task.current.errorCount
     grunt.log.ok 'Compiling complete'
 
-  grunt.registerHelper 'coffee-delete', (filepath) ->
+  grunt.config 'helper.coffee.delete', (filepath) ->
     if fs.existsSync(filepath)
       fs.unlinkSync filepath
       grunt.log.writeln 'Deleted \'' + filepath + '\''
 
-  grunt.registerHelper 'coffee', (src, dest) ->
+  grunt.config 'helper.coffee.compile', (src, dest) ->
     options = grunt.config.get('options.coffee') or {}
     options.filename = src
 

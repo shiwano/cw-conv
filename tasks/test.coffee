@@ -7,9 +7,9 @@ module.exports = (grunt) ->
     filepaths = grunt.file.expandFiles(@data.files)
     grunt.file.clearRequireCache filepaths
     done = @async()
-    grunt.helper 'test', filepaths, done
+    grunt.config.get('helper.test')(filepaths, done)
 
-  grunt.registerHelper 'test', (filepaths, done) ->
+  grunt.config 'helper.test', (filepaths, done) ->
     options = grunt.config.get('options.mocha') or {}
     mocha = new Mocha(options)
     grunt.file.clearRequireCache filepaths
