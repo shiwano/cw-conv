@@ -1,4 +1,4 @@
-`if (typeof define !== 'function') { var define = require('amdefine')(module); }`
+define = @define or require('amdefine')(module)
 
 define (require, exports, module) ->
   utils = require './utils'
