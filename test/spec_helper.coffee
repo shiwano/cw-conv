@@ -30,7 +30,7 @@ exports.registerSchema = ->
   for schemaName in arguments
     schema = findSchema schemaName
     continue if schema?
-    schemaString = fs.readFileSync "test/schemas/#{schemaName}.json", 'utf-8'
+    schemaString = fs.readFileSync "schemas/lib/#{schemaName}.json", 'utf-8'
     schemaData = JSON.parse schemaString
     jsv.createSchema schemaData
 
