@@ -1,14 +1,9 @@
 # cw-conv
 
-Convert old CardWirth data
+Old CardWirth data converter
 
 ## Getting Started
-Install the module with: `npm install cw-conv`
-
-```javascript
-var cw_conv = require('cw-conv');
-cw_conv.awesome(); // "awesome"
-```
+_(Coming soon)_
 
 ## Documentation
 _(Coming soon)_
@@ -23,5 +18,5 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 _(Nothing yet)_
 
 ## License
-Copyright (c) 2012 Shogo Iwano  
+Copyright (c) 2012 Shogo Iwano
 Licensed under the MIT license.
