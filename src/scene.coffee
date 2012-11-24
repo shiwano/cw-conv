@@ -25,7 +25,7 @@ define (require, exports, module) ->
       @seek 4 # skip the unknown data
       @data.description = @readString()
       @data.events      = @readArray => new Event(@).parse()
-      @data.flag        = @readString()
+      @data.flagName    = @readString()
       @data.scale       = @readInt32()
       @data.left        = @readInt32()
       @data.top         = @readInt32()
