@@ -21,7 +21,7 @@ module.exports = (grunt) ->
       requirejs:
         baseUrl: 'lib'
         name: 'main'
-        out: 'build/main.js'
+        out: 'public/javascripts/main.js'
         wrap:
           start: '(function(define) {'
           end: '})(define);'
