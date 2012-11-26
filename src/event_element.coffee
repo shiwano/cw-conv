@@ -99,8 +99,8 @@ class EventElement.BranchByAbility extends EventElementBase
     super
     @data.value = @readInt32()
     @data.target = @convertTargetType @readInt8()
-    @data.physicalAptitude = @convertPhysicalAptitudeType @readInt32()
-    @data.mentalAptitude = @convertMentalAptitudeType @readInt32()
+    @data.abilityAptitude = @convertPhysicalAptitudeType @readInt32()
+    @data.personalAptitude = @convertMentalAptitudeType @readInt32()
     @data
 
 class EventElement.BranchByRandom extends EventElementBase

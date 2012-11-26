@@ -9,8 +9,8 @@ class Card extends Base
     @data.name             = @readString()
     @data.id               = @readInt32() % 10000
     @data.description      = @readString()
-    @data.physicalAptitude = @convertPhysicalAptitudeType @readInt32()
-    @data.mentalAptitude   = @convertMentalAptitudeType @readInt32()
+    @data.abilityAptitude = @convertPhysicalAptitudeType @readInt32()
+    @data.personalAptitude   = @convertMentalAptitudeType @readInt32()
     @data.ignoreSilence    = not @readBoolean()
     @data.targetAll        = @readBoolean()
     @data.target           = @convertCardTargetType @readInt8()
