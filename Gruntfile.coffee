@@ -25,6 +25,13 @@ module.exports = (grunt) ->
         wrap:
           start: '(function(define) {'
           end: '})(define);'
+        onBuildRead: (moduleName, path, contents) ->
+          """
+          define(function(require, exports, module) {
+            #{contents}
+            return exports;
+          });
+          """
 
     yagura:
       coffee:

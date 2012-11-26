@@ -1,14 +1,10 @@
-define = @define or require('amdefine')(module)
+{Card} = require './card'
 
-define (require, exports, module) ->
-  {Card} = require './card'
+class BeastCard extends Card
+  parse: ->
+    super
+    @data.usageLimit = @readInt32()
+    @data.attachment = if @isInnData then @readBoolean() else false
+    @data
 
-  class BeastCard extends Card
-    parse: ->
-      super
-      @data.usageLimit = @readInt32()
-      @data.attachment = if @isInnData then @readBoolean() else false
-      @data
-
-  exports.BeastCard = BeastCard
-  exports
+exports.BeastCard = BeastCard
