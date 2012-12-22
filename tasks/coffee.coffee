@@ -8,7 +8,6 @@ module.exports = (grunt) ->
     dest = @data.dest
 
     filepaths = grunt.file.expandFiles(path.join(src, '/**/*.coffee'))
-    grunt.file.clearRequireCache filepaths
     grunt.file.expandFiles(path.join(dest, '/**/*.js')).forEach (filepath) ->
       srcpath = filepath.replace(dest, src).replace(/\.js$/, '.coffee')
       unless fs.existsSync(srcpath)
