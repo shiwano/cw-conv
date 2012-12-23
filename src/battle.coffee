@@ -5,12 +5,12 @@ class Battle extends Base
   parse: ->
     @data.type        = @convertScenarioDataType @readInt8()
     @seek 4 # skip the unknown data
-    @data.name            = @readString()
-    @data.id              = @readInt32() % 10000
-    @data.events          = @readArray => new Event(@).parse()
-    @data.cardArrangement = @convertCardArrangementType @readInt8()
-    @data.enemyCards      = @readArray => new EnemyCard(@).parse()
-    @data.music           = @readString()
+    @data.name       = @readString()
+    @data.id         = @readInt32() % 10000
+    @data.events     = @readArray => new Event(@).parse()
+    @data.menuCardArrangementType = @convertMenuCardArrangementType @readInt8()
+    @data.enemyCards = @readArray => new EnemyCard(@).parse()
+    @data.music      = @readString()
     @data
 
 class EnemyCard extends Base

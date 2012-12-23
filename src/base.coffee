@@ -144,7 +144,7 @@ class Base
 # コンテント系
 #-------------------------------------------------------------------------------
 
-  convertCardArrangementType: (i) ->
+  convertMenuCardArrangementType: (i) ->
     switch i
       when 0 then 'auto'   # 自動配置
       when 1 then 'custom' # 指定配置

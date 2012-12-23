@@ -2,7 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Scene} = spec.require "scene.coffee"
-spec.registerSchema 'event'
+spec.registerSchema 'scene'
 
 describe 'Event', ->
   describe '#parse', ->
@@ -11,4 +11,4 @@ describe 'Event', ->
       scene = new Scene null, buffer
       sceneData = scene.parse()
       data = sceneData.events[0]
-      expect(spec.validateJSON data, 'event').to.be.true
+      expect(spec.validateJSON data, 'scene#event').to.be.true

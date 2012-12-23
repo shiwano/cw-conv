@@ -6,12 +6,12 @@ class Scene extends Base
   parse: ->
     @data.type        = @convertScenarioDataType @readInt8()
     @seek 4 # skip the unknown data
-    @data.name            = @readString()
-    @data.id              = @readInt32() % 10000
-    @data.events          = @readArray => new Event(@).parse()
-    @data.cardArrangement = @convertCardArrangementType @readInt8()
-    @data.menuCards       = @readArray => new MenuCard(@).parse()
-    @data.backgrounds     = @readArray => new BackgroundImage(@).parse()
+    @data.name        = @readString()
+    @data.id          = @readInt32() % 10000
+    @data.events      = @readArray => new Event(@).parse()
+    @data.menuCardArrangementType = @convertMenuCardArrangementType @readInt8()
+    @data.menuCards   = @readArray => new MenuCard(@).parse()
+    @data.backgrounds = @readArray => new BackgroundImage(@).parse()
     @data
 
 class MenuCard extends Base

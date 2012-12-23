@@ -2,6 +2,7 @@ spec = require '../spec_helper'
 {expect} = require 'chai'
 
 {Package} = spec.require "package.coffee"
+spec.registerSchema 'scene'
 
 describe 'Effect', ->
   describe '#parse', ->
@@ -13,4 +14,4 @@ describe 'Effect', ->
 
       for effectElement in effectElements
         for effect in effectElement.effects
-          expect(spec.validateJSON effect, 'effect').to.be.true
+          expect(spec.validateJSON effect, 'scene#effect').to.be.true
