@@ -1,13 +1,13 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{Package} = spec.require "package.coffee"
-spec.registerSchema 'package'
+{Package} = helper.require "package.coffee"
+helper.registerSchema 'package'
 
 describe 'Package', ->
   describe '#parse', ->
     it 'should return the Package data', ->
-      buffer = spec.readFixtureFile 'Package1.wid'
+      buffer = helper.readFixtureFile 'Package1.wid'
       pack = (new Package null, buffer)
       data = pack.parse()
-      expect(spec.validateJSON data, 'package').to.be.true
+      expect(helper.validateJSON data, 'package').to.be.true

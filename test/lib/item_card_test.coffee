@@ -1,13 +1,13 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{ItemCard} = spec.require "item_card.coffee"
-spec.registerSchema 'item_card'
+{ItemCard} = helper.require "item_card.coffee"
+helper.registerSchema 'item_card'
 
 describe 'ItemCard', ->
   describe '#parse', ->
     it 'should return the ItemCard data', ->
-      buffer = spec.readFixtureFile 'scenario/ryune/Item68.wid'
+      buffer = helper.readFixtureFile 'scenario/ryune/Item68.wid'
       itemCard = new ItemCard null, buffer
       data = itemCard.parse()
-      expect(spec.validateJSON data, 'item_card').to.be.true
+      expect(helper.validateJSON data, 'item_card').to.be.true

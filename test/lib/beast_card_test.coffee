@@ -1,13 +1,13 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{BeastCard} = spec.require "beast_card.coffee"
-spec.registerSchema 'beast_card'
+{BeastCard} = helper.require "beast_card.coffee"
+helper.registerSchema 'beast_card'
 
 describe 'BeastCard', ->
   describe '#parse', ->
     it 'should return the BeastCard data', ->
-      buffer = spec.readFixtureFile 'scenario/ryune/Beast91.wid'
+      buffer = helper.readFixtureFile 'scenario/ryune/Beast91.wid'
       skillCard = new BeastCard null, buffer
       data = skillCard.parse()
-      expect(spec.validateJSON data, 'beast_card').to.be.true
+      expect(helper.validateJSON data, 'beast_card').to.be.true

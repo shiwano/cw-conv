@@ -1,9 +1,9 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{Summary} = spec.require "summary.coffee"
-spec.registerSchema 'summary'
-buffer = spec.readFixtureFile 'Summary.wsm'
+{Summary} = helper.require "summary.coffee"
+helper.registerSchema 'summary'
+buffer = helper.readFixtureFile 'Summary.wsm'
 
 describe 'Summary', ->
   describe '#parse', ->
@@ -15,7 +15,7 @@ describe 'Summary', ->
     it 'should return the summary data', ->
       summary = new Summary null, buffer
       data = summary.parse()
-      expect(spec.validateJSON data, 'summary').to.be.true
+      expect(helper.validateJSON data, 'summary').to.be.true
 
 describe 'Flag', ->
   describe '#parse', ->
@@ -23,7 +23,7 @@ describe 'Flag', ->
       summary = new Summary null, buffer
       summaryData = summary.parse()
       data = summaryData.defnitions.flags[0]
-      expect(spec.validateJSON data, 'summary#flag').to.be.true
+      expect(helper.validateJSON data, 'summary#flag').to.be.true
 
 describe 'Steps', ->
   describe '#parse', ->
@@ -31,4 +31,4 @@ describe 'Steps', ->
       summary = new Summary null, buffer
       summaryData = summary.parse()
       data = summaryData.defnitions.stepsList[0]
-      expect(spec.validateJSON data, 'summary#steps').to.be.true
+      expect(helper.validateJSON data, 'summary#steps').to.be.true

@@ -1,17 +1,17 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{Package} = spec.require "package.coffee"
-spec.registerSchema 'scene'
+{Package} = helper.require "package.coffee"
+helper.registerSchema 'scene'
 
 describe 'Effect', ->
   describe '#parse', ->
     it 'should return the effect data', ->
-      buffer = spec.readFixtureFile 'Package1.wid'
+      buffer = helper.readFixtureFile 'Package1.wid'
       pack = (new Package null, buffer)
       data = pack.parse()
-      effectElements = spec.findEventElements 'effect', data.events[0]
+      effectElements = helper.findEventElements 'effect', data.events[0]
 
       for effectElement in effectElements
         for effect in effectElement.effects
-          expect(spec.validateJSON effect, 'scene#effect').to.be.true
+          expect(helper.validateJSON effect, 'scene#effect').to.be.true

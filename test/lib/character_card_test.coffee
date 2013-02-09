@@ -1,12 +1,12 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{CharacterCard} = spec.require 'character_card.coffee'
-spec.registerSchema 'character_card', 'skill_card', 'item_card', 'beast_card'
+{CharacterCard} = helper.require 'character_card.coffee'
+helper.registerSchema 'character_card', 'skill_card', 'item_card', 'beast_card'
 
 describe 'CharacterCard', ->
   describe '#parse', ->
     it 'should return the character data', ->
-      buffer = spec.readFixtureFile 'scenario/goblin_cave/Mate4.wid'
+      buffer = helper.readFixtureFile 'scenario/goblin_cave/Mate4.wid'
       data = (new CharacterCard null, buffer).parse()
-      expect(spec.validateJSON data, 'character_card').to.be.true
+      expect(helper.validateJSON data, 'character_card').to.be.true

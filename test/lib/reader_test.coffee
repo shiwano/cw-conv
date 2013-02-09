@@ -1,8 +1,8 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 require 'buffertools'
 
-{Reader} = spec.require "reader.coffee"
+{Reader} = helper.require "reader.coffee"
 
 describe 'Reader', ->
   describe '#seek', ->
@@ -26,7 +26,7 @@ describe 'Reader', ->
 
   describe '#readString', ->
     it 'should return the string which is decoded from Shift-JIS', ->
-      buffer = spec.readFixtureFile 'Summary.wsm'
+      buffer = helper.readFixtureFile 'Summary.wsm'
       reader = new Reader(buffer)
       reader.readImageAsDataURI()
       expect(reader.readString()).to.equal 'ゴブリンの洞窟'
@@ -57,10 +57,10 @@ describe 'Reader', ->
 
   describe '#readImage', ->
     it 'should return the image data', ->
-      buffer = spec.readFixtureFile 'Summary.wsm'
+      buffer = helper.readFixtureFile 'Summary.wsm'
       reader = new Reader(buffer)
       imageBuf = reader.readImage()
-      fixtureImageBuf = spec.readFixtureFile 'Summary.bmp'
+      fixtureImageBuf = helper.readFixtureFile 'Summary.bmp'
       expect(imageBuf.equals(fixtureImageBuf)).to.be.true
 
     context 'when the image data length is 0', ->
@@ -72,8 +72,8 @@ describe 'Reader', ->
 
   describe '#readImageAsDataURI', ->
     it 'should return the dataUri string of the image data', ->
-      buffer = spec.readFixtureFile 'Summary.wsm'
+      buffer = helper.readFixtureFile 'Summary.wsm'
       reader = new Reader(buffer)
       dataURI = reader.readImageAsDataURI()
-      validDataURI = spec.readFixtureFile 'Summary.bmp.datauri', 'ascii'
+      validDataURI = helper.readFixtureFile 'Summary.bmp.datauri', 'ascii'
       expect(dataURI).to.equal validDataURI

@@ -1,9 +1,9 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 require 'buffertools'
 
-{createEventElement} = spec.require "event_element.coffee"
-{Base} = spec.require 'base.coffee'
+{createEventElement} = helper.require "event_element.coffee"
+{Base} = helper.require 'base.coffee'
 
 describe 'createEventElement', ->
   it 'should return the appropriate EventElement instance', ->

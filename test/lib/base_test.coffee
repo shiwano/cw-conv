@@ -1,7 +1,7 @@
-spec = require '../spec_helper'
+helper = require '../test_helper'
 {expect} = require 'chai'
 
-{Base} = spec.require "base.coffee"
+{Base} = helper.require "base.coffee"
 
 describe 'Base', ->
   describe '#readArray', ->
