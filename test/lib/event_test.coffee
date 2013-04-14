@@ -7,7 +7,7 @@ helper.registerSchema 'scene'
 describe 'Event', ->
   describe '#parse', ->
     it 'should return the event data', ->
-      buffer = helper.readFixtureFile 'scenario/goblin_cave/Area2.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'scenario/goblin_cave/Area2.wid'
       scene = new Scene null, buffer
       sceneData = scene.parse()
       data = sceneData.events[0]

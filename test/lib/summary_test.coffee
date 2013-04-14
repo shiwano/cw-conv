@@ -3,7 +3,7 @@ helper = require '../test_helper'
 
 {Summary} = helper.require "summary.coffee"
 helper.registerSchema 'summary'
-buffer = helper.readFixtureFile 'Summary.wsm'
+buffer = helper.readFixtureAsArrayBuffer 'Summary.wsm'
 
 describe 'Summary', ->
   describe '#parse', ->

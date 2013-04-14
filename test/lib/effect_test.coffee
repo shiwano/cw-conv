@@ -7,7 +7,7 @@ helper.registerSchema 'scene'
 describe 'Effect', ->
   describe '#parse', ->
     it 'should return the effect data', ->
-      buffer = helper.readFixtureFile 'Package1.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'Package1.wid'
       pack = (new Package null, buffer)
       data = pack.parse()
       effectElements = helper.findEventElements 'effect', data.events[0]

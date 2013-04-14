@@ -7,7 +7,7 @@ require 'buffertools'
 
 describe 'createEventElement', ->
   it 'should return the appropriate EventElement instance', ->
-    buffer = new Buffer(100).clear()
+    buffer = new ArrayBuffer(100)
     eventElement = createEventElement new Base(null, buffer)
     data = eventElement.parse()
     expect(data).to.have.property('type').and.equal 'start'

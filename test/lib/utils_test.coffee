@@ -6,23 +6,23 @@ utils = helper.require "utils.coffee"
 describe 'utils', ->
   describe '#toBase64', ->
     it 'should return the base64 string', ->
-      buffer = helper.readFixtureFile 'Summary.bmp'
+      buffer = helper.readFixture 'Summary.bmp'
       base64 = utils.toBase64 buffer
-      dataURI = helper.readFixtureFile 'Summary.bmp.datauri', 'ascii'
+      dataURI = helper.readFixture 'Summary.bmp.datauri', 'ascii'
       expect(dataURI.indexOf(base64)).to.be.above -1
 
   describe '#detectDataType', ->
     it 'should return the data type name', ->
-      buffer = helper.readFixtureFile 'scenario/goblin_cave/Area1.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'scenario/goblin_cave/Area1.wid'
       expect(utils.detectDataType buffer, 'Area1.wid').to.be.equal 'scene'
 
-      buffer = helper.readFixtureFile 'Summary.wsm'
+      buffer = helper.readFixtureAsArrayBuffer 'Summary.wsm'
       expect(utils.detectDataType buffer, 'Summary.wsm').to.be.equal 'summary'
 
-      buffer = helper.readFixtureFile 'Package1.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'Package1.wid'
       expect(utils.detectDataType buffer, 'Package1.wid').to.be.equal 'package'
 
-      buffer = helper.readFixtureFile 'Info1.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'Info1.wid'
       expect(utils.detectDataType buffer, 'Info1.wid').to.be.equal 'infoCard'
 
   describe '#toUpperCamelCase', ->

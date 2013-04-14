@@ -14,8 +14,26 @@ global.btoa = (string) ->
 exports.require = (path) =>
   require "#{__dirname}/../src/#{path}"
 
-exports.readFixtureFile = (name, encoding) ->
+exports.readFixture = (name, encoding) ->
   fs.readFileSync path.join('test/fixtures', name), encoding
+
+exports.readFixtureAsArrayBuffer = (name, encoding) ->
+  buffer = exports.readFixture name, encoding
+  exports.toArrayBuffer buffer
+
+exports.toArrayBuffer = (buffer) ->
+  arrayBuffer = new ArrayBuffer(buffer.length)
+  view = new Uint8Array(arrayBuffer)
+  for value, index in buffer
+    view[index] = value
+  arrayBuffer
+
+exports.toBuffer = (arrayBuffer) ->
+  view = new Uint8Array(arrayBuffer)
+  buffer = new Buffer(view.length)
+  for value, index in view
+    buffer[index] = value
+  buffer
 
 exports.findEventElements = (eventName, event, results=[]) ->
   for elem in event.children

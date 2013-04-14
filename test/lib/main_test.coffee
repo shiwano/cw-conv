@@ -7,7 +7,7 @@ main = helper.require "main.coffee"
 describe 'main', ->
   describe '#convert', ->
     it 'should convert to JSON from old cardwird data', ->
-      buffer = helper.readFixtureFile 'scenario/goblin_cave/Battle3.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'scenario/goblin_cave/Battle3.wid'
       result = main.convert buffer, 'Battle3.wid'
       data = (new Battle null, buffer)
       data.parse()

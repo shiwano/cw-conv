@@ -7,7 +7,7 @@ helper.registerSchema 'package'
 describe 'Package', ->
   describe '#parse', ->
     it 'should return the Package data', ->
-      buffer = helper.readFixtureFile 'Package1.wid'
+      buffer = helper.readFixtureAsArrayBuffer 'Package1.wid'
       pack = (new Package null, buffer)
       data = pack.parse()
       expect(helper.validateJSON data, 'package').to.be.true
