@@ -29,6 +29,11 @@ module.exports = (grunt) ->
         dest: 'lib/'
         ext: '.js'
 
+    'gh-pages':
+      options:
+        base: 'public'
+      src: '**/*'
+
     requirejs:
       compile:
         options:
@@ -55,6 +60,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-requirejs'
   grunt.loadNpmTasks 'grunt-simple-mocha'
+  grunt.loadNpmTasks 'grunt-gh-pages'
   grunt.registerTask 'test', 'simplemocha'
   grunt.registerTask 'build', 'requirejs:compile'
   grunt.registerTask 'server', 'connect:server'
