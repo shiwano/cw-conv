@@ -1,6 +1,6 @@
 helper = require '../test_helper'
 {expect} = require 'chai'
-require 'buffertools'
+buffertools = require 'buffertools'
 
 {Reader} = helper.require "reader.coffee"
 
@@ -61,7 +61,7 @@ describe 'Reader', ->
       reader = new Reader(buffer)
       imageBuf = reader.readImage()
       fixtureImageBuf = helper.readFixture 'Summary.bmp'
-      expect(helper.toBuffer(imageBuf).equals(fixtureImageBuf)).to.be.true
+      expect(buffertools.equals helper.toBuffer(imageBuf), fixtureImageBuf).to.be.true
 
     context 'when the image data length is 0', ->
       it 'should return the null', ->
